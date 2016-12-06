@@ -7,6 +7,9 @@ const logger = require('morgan');
 const app = express();
 const PORT = process.argv[2] || process.env.PORT || 3000;
 
+// import router for Yelp API
+const yelpRouter = require('./routes/yelp');
+
 // set up some looging
 app.use(logger('dev'));
 
@@ -15,5 +18,8 @@ app.use(bodyParser.json());
 
 // set default static assets folder
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// map our routes
+app.use('/yelp', yelpRouter);
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});
