@@ -1,7 +1,7 @@
 {
-  "name": "Digital-Gypsy",
+  "name": "Moodie_Foodie",
   "version": "1.0.0",
-  "description": "An app for nomads.",
+  "description": "An app for hungry.",
   "engines": {
     "node": "6.6.0"
   },
