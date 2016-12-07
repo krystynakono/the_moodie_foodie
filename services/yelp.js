@@ -26,7 +26,8 @@ function restaurantSearch(req, res, next) {
   // Set parameters
   const userParams = {
     term: 'thai food',
-    location: 'New York City',
+    location: 'manhattan',
+    cll: '40.7589, 73.9851',
   };
 
   // Set the required parameters here
