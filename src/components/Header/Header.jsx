@@ -5,9 +5,9 @@ const Header = props => (
   <div className="header">
     <h1>The Moodie Foodie</h1>
     <div className="header-links">
-      <h3>EAT</h3>
-      <h3>STARED</h3>
-      <h3>LOG OUT</h3>
+      <button>EAT</button>
+      <button>STARED</button>
+      <button onClick={props.handleLogout}>LOG OUT</button>
     </div>
   </div>
 )

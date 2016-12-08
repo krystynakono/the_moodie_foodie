@@ -133,23 +133,30 @@ class App extends Component {
   }
 
   // handles the logout of the user, will revert to login state
+  // handleLogout() {
+  //   fetch('/auth/logout', {
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     method: 'DELETE',
+  //     body: JSON.stringify({
+  //       id: this.state.userID,
+  //     }),
+  //   });
+  //   this.setState({
+  //     userID: 0,
+  //     isLoggedIn: false,
+  //   });
+  //   console.log('logging out');
+  //   window.localStorage.token = null;
+  //   window.localStorage.id = null;
+  // }
   handleLogout() {
-    fetch('/auth/logout', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'DELETE',
-      body: JSON.stringify({
-        id: this.state.userID,
-      }),
-    });
     this.setState({
-      userID: 0,
       isLoggedIn: false,
+      userID: 0,
     });
     console.log('logging out');
-    window.localStorage.token = null;
-    window.localStorage.id = null;
   }
 
   // this authenticates the user on each page load
@@ -199,7 +206,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header />
+        <Header
+          handleLogout={this.handleLogout.bind(this)}
+        />
         {this.loggedIn(this.state.isLoggedIn)}
       </div>
     );
