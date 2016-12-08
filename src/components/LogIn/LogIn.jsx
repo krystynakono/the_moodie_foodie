@@ -18,16 +18,21 @@ class LogIn extends Component {
       <div className="signin-box">
         <input
           type="text"
-          // value="loginName"
+          value={this.props.loginName}
+          name="loginName"
           placeholder="username"
+          onChange={this.props.updateAuthForms}
         />
         <input
           type="password"
-          // value="password"
+          value={this.props.loginPass}
+          name="loginPass"
           placeholder="password"
+          onChange={this.props.updateAuthForms}
         />
         <button
           id="login-button"
+          onClick={this.props.handleLogin}
         >
           Log In
         </button>
