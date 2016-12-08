@@ -33,8 +33,26 @@ class LogIn extends Component {
         </button>
         <button id="signupModal" onClick={this.onClickMethod.bind(this)}>Sign Up</button>
         <div id="signup" ref="signup">
-          <input type="text"/>
-          <button>Sign Up</button>
+          <input
+            type="text"
+            value={this.props.signupName}
+            name="signupName"
+            placeholder="username"
+            onChange={this.props.updateAuthForms}
+          />
+          <input
+            type="password"
+            value={this.props.signupPass}
+            name="signupPass"
+            placeholder="password"
+            onChange={this.props.updateAuthForms}
+          />
+          <button
+            id="signup-form-button"
+            onClick={this.props.handleSignup}
+          >
+            Sign Up
+          </button>
         </div>
       </div>
     );

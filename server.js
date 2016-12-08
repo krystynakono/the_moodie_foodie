@@ -10,6 +10,9 @@ const PORT = process.argv[2] || process.env.PORT || 3000;
 // import router for Yelp API
 const yelpRouter = require('./routes/yelp');
 
+// authorization router to signup/login and validate users
+const authRouter = require('./routes/auth');
+
 // set up some looging
 app.use(logger('dev'));
 
@@ -21,5 +24,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // map our routes
 app.use('/yelp', yelpRouter);
+app.use('/auth', authRouter);
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});

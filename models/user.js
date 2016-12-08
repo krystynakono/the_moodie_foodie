@@ -10,24 +10,27 @@ function createUser(req, res, next) {
   console.log(req.body);
   const userObject = {
     username: req.body.username,
-    password: bcrypt.hashSync(req.body.password, SALTROUNDS)
+    password: bcrypt.hashSync(req.body.password, SALTROUNDS),
   };
 
-  psql.none(`INSERT INTO users (username, password)
-             VALUES ('${userObject.username}', '${userObject.password}');`)
-  .catch(error => console.log(error));
-  // then gets the newly created id from the db
-  psql.one(`SELECT id
-            FROM users
-            WHERE username = $/username/
-            AND password = $/password/;`, userObject)
-  .then((result) => {
-    console.log(result);
-    res.token = createToken(result);
-    res.id = result.id;
-    next();
+  psql.none('INSERT INTO users (username, password) VALUES ($1, $2);',
+             [userObject.username, userObject.password])
+  .then(() => {
+    psql.one(`SELECT id
+              FROM users
+              WHERE username = $1
+              AND password = $2;`,
+              [userObject.username, userObject.password])
+    .then((result) => {
+      console.log(result);
+      res.token = createToken(result);
+      res.id = result.id;
+      next();
+    })
+    .catch(error => next(error));
   })
-  .catch(error => next(error));
+  .catch(error => console.log('Signup failed. Please try again'));
+  // then gets the newly created id from the db
 }
 
 function getUserById(id) {

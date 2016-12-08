@@ -3,18 +3,12 @@ import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
 import style from './App.css';
 
-function loggedIn(isLoggedIn) {
-  if (!isLoggedIn) {
-    return (<LogIn />);
-  }
-}
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      modalIsOpen: false,
       isLoggedIn: false,
       signupName: '',
       signupPass: '',
@@ -24,10 +18,29 @@ class App extends Component {
     };
   }
 
+  loggedIn(isLoggedIn) {
+    if (!isLoggedIn) {
+      return (
+        <LogIn
+          updateAuthForms={event => this.updateAuthForms(event)}
+          handleSignup={this.handleSignup.bind(this)}
+          handleLogin={this.handleLogin.bind(this)}
+          loginName={this.state.loginName}
+          loginPass={this.state.loginPass}
+          signupName={this.state.signupName}
+          signupPass={this.state.signupPass}
+          handleLogout={this.handleLogout.bind(this)}
+        />
+      );
+    }
+  }
+
   // code attributed to Nick from Digital Gypsy project
   // updates all of the login/signup forms, filters by name
   updateAuthForms(e) {
     const value = e.target.value;
+    // console.log(e.target.name);
+    // console.log(e.target.value);
     switch (e.target.name) {
       case 'loginName':
         this.setState({ loginName: value });
@@ -36,7 +49,7 @@ class App extends Component {
         this.setState({ loginPass: value });
         break;
       case 'signupName':
-        this.setState({ signupName: value });
+        this.setState({ signupName: e.target.value });
         break;
       case 'signupPass':
         this.setState({ signupPass: value });
@@ -62,7 +75,7 @@ class App extends Component {
     })
     .then(r => r.json())
     .then((response) => {
-      console.log('the response is: ', response)
+      console.log('the response is: ', response);
       if (response.id !== 'invalid') {
         this.setState({
           userID: response.id,
@@ -79,6 +92,9 @@ class App extends Component {
       loginPass: '',
     }))
     .then(console.log('logging in user: ', localStorage.id))
+    .then(() => {
+      this.setState({ isLoggedIn: true });
+    })
     .catch(err => console.log(err));
   }
 
@@ -116,22 +132,75 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  doLogin() {
-    fetch('/your/login/route', {})
-    .then(r => r.json())
-    .then((token) => {
-      localStorage.setItem('authToken', token)
-      const newToken = localStorage.getItem('authToken')
-      this.setState({ isLoggedIn: true })
-    })
+  // handles the logout of the user, will revert to login state
+  handleLogout() {
+    fetch('/auth/logout', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'DELETE',
+      body: JSON.stringify({
+        id: this.state.userID,
+      }),
+    });
+    this.setState({
+      userID: 0,
+      isLoggedIn: false,
+    });
+    console.log('logging out');
+    window.localStorage.token = null;
+    window.localStorage.id = null;
   }
+
+  // this authenticates the user on each page load
+  // uses a token from local storage to verify access
+  authenticateUser() {
+    let token;
+    if ((localStorage.getItem('token') === null)) {
+      token == 'invalid';
+    } else {
+      token = localStorage.getItem('token')
+    }
+    console.log(token)
+    fetch('/auth/verify', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        id: this.state.id,
+        token: token,
+      }),
+    })
+    .then(r => r.json())
+    .then((response) => {
+      if (response.name === 'JsonWebTokenError') {
+        this.setState({ userID: 0 });
+        localStorage.setItem('token', null);
+      } else {
+        this.setState({ userID: response.id });
+        localStorage.setItem('token', response.token);
+      }
+    })
+    .catch(err => console.log(err));
+  }
+
+  // doLogin() {
+  //   fetch('/your/login/route', {})
+  //   .then(r => r.json())
+  //   .then((token) => {
+  //     localStorage.setItem('authToken', token)
+  //     const newToken = localStorage.getItem('authToken')
+  //     this.setState({ isLoggedIn: true })
+  //   })
+  // }
 
 
   render() {
     return (
       <div className="app">
         <Header />
-        {loggedIn(this.state.isLoggedIn)}
+        {this.loggedIn(this.state.isLoggedIn)}
       </div>
     );
   }
