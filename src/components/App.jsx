@@ -119,14 +119,6 @@ class App extends Component {
   // After setting food equal to that cuisine, call the function that makes
   // the fetch call to Yelp to get suggested restaurants matching cuisine.
   getFoodForMood() {
-    // console.log('happy: ' + this.state.happy);
-    // console.log('sad: ' + this.state.sad);
-    // console.log('angry: ' + this.state.angry);
-    // console.log('surprised: ' + this.state.surprised);
-    // console.log('contempt: ' + this.state.contempt);
-    // console.log('disgust: ' + this.state.disgust);
-    // console.log('fear: ' + this.state.fear);
-    // console.log('neutral: ' + this.state.neutral);
     const setFood = new Promise((res, rej) => {
       let food;
       console.log('mood: ' + this.state.mood);
@@ -153,7 +145,6 @@ class App extends Component {
     });
     setFood.then(result => this.searchRestaurant(result));
   }
-
 
   // In order to save user preferences of mood to food, user will take a
   // quiz when logging in. The counter will start at 0 and the first emotion
