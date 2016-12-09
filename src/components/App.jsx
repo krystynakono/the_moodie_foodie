@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
+import EmotionForm from './EmotionForm/EmotionForm.jsx';
 import style from './App.css';
 
 
@@ -25,9 +26,12 @@ class App extends Component {
       userID: 0,
       emotion: 'HAPPY?',
       counter: 0,
+      mood: '',
     };
   }
 
+  // This function checks to see if the state isLoggedIn is false.
+  // If the user is not logged in, the log in form will render.
   loggedIn(isLoggedIn) {
     if (!isLoggedIn) {
       return (
@@ -43,6 +47,18 @@ class App extends Component {
           emotion={this.state.emotion}
           quiz={event => this.quiz(event)}
           counter={this.state.counter}
+        />
+      );
+    }
+  }
+
+  // Checks to see if the state isLoggedIn is true.
+  // If the user is logged in, the emotion form will render.
+  emotionForm(isLoggedIn) {
+    if (isLoggedIn){
+      return (
+        <EmotionForm
+          mood={this.state.mood}
         />
       );
     }
@@ -297,6 +313,7 @@ class App extends Component {
           handleLogout={this.handleLogout.bind(this)}
         />
         {this.loggedIn(this.state.isLoggedIn)}
+        {this.emotionForm(this.state.isLoggedIn)}
       </div>
     );
   }
