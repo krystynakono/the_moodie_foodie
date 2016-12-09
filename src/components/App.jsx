@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
 import EmotionForm from './EmotionForm/EmotionForm.jsx';
-import style from './App.css';
+// import Restaurant from './Restaurant/Restaurant.jsx';
+// import MapContainer from './MapContainer/MapContainer.jsx';
+import './App.css';
 
 
 class App extends Component {
@@ -68,6 +70,16 @@ class App extends Component {
     }
   }
 
+  restaurantInfo(eatHere) {
+    if (eatHere !== '') {
+      return (
+        <div className="restaurant-holder">
+
+        </div>
+      );
+    }
+  }
+
   // Update the state mood when user uses dropdown menu
   moodUpdate(e) {
     this.setState({
@@ -81,11 +93,14 @@ class App extends Component {
   searchRestaurant(cuisine) {
     fetch(`yelp/${cuisine}`)
     .then(r => r.json())
-    .then(restaurants => this.setState(
+    .then((restaurants) => {
+      this.setState(
       { restaurants },
-    ))
-    .then(() => console.log(this.state.restaurants))
-    .then(this.pickOneRestaurant())
+      );
+      console.log(this.state.restaurants);
+      this.pickOneRestaurant();
+      console.log(this.state.eatHere)
+    });
   }
 
   pickOneRestaurant() {
@@ -356,6 +371,7 @@ class App extends Component {
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.isLoggedIn)}
+        {this.restaurantInfo(this.state.eatHere)}
       </div>
     );
   }
