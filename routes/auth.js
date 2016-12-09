@@ -10,6 +10,7 @@ router.post('/login', logIn, (req, res) => {
   res.json({
     token: res.token,
     id: res.id || 'invalid',
+    happy: res.happy || '',
   });
 });
 

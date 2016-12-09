@@ -23,6 +23,8 @@ const oauthToken      = process.env.oauth_token;
 function restaurantSearch(req, res, next) {
   const httpMethod = 'GET';
 
+  console.log(req.query);
+  const food = req.query.food;
   // Set parameters
   const userParams = {
     term: 'thai food',

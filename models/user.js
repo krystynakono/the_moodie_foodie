@@ -36,6 +36,7 @@ function createUser(req, res, next) {
       console.log(result);
       res.token = createToken(result);
       res.id = result.id;
+      res.happy = result.happy;
       next();
     })
     .catch(error => next(error));

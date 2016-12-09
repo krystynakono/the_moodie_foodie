@@ -27,6 +27,7 @@ class App extends Component {
       emotion: 'HAPPY?',
       counter: 0,
       mood: 'happy',
+      restaurants: '',
     };
   }
 
@@ -60,6 +61,7 @@ class App extends Component {
         <EmotionForm
           mood={this.state.mood}
           moodUpdate={event => this.moodUpdate(event)}
+          getFoodForMood={this.getFoodForMood.bind(this)}
         />
       );
     }
@@ -70,7 +72,43 @@ class App extends Component {
     this.setState({
       mood: e.target.value,
     });
-    console.log(e.target.value)
+    console.log(e.target.value);
+  }
+
+  // Make a fetch to the yelp route to search for restaurants matching a
+  // specific cuisine
+  searchRestaurant(cuisine) {
+    fetch(`yelp/${cuisine}`)
+    .then(r => r.json())
+    .then(restaurants => this.setState(
+      { restaurants },
+    ))
+    .then(() => console.log(this.state.restaurants));
+  }
+
+  getFoodForMood() {
+    console.log('moody')
+    let food;
+    const setFood = new Promise(function () {
+      if (this.state.mood === 'happy') {
+        food = this.state.happy;
+      } else if (this.state.mood === 'sad') {
+        food = this.state.sad;
+      } else if (this.state.mood === 'angry') {
+        food = this.state.angry;
+      } else if (this.state.mood === 'surprised') {
+        food = this.state.surprised;
+      } else if (this.state.mood === 'contempt') {
+        food = this.state.contempt;
+      } else if (this.state.mood === 'disgust') {
+        food = this.state.disgust;
+      } else if (this.state.mood === 'fear') {
+        food = this.state.fear;
+      } else if (this.state.mood === 'neutral') {
+        food = this.state.neutral;
+      }
+    });
+    setFood.then(this.searchRestaurant(food));
   }
 
   // In order to save user preferences of mood to food, user will take a
