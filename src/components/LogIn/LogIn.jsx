@@ -71,6 +71,10 @@ class LogIn extends Component {
                 <p>Italian</p>
               </div>
               <div className="food-image-holder">
+                <img src="http://i.imgur.com/36gPaWG.jpg" alt="American Food" id="american" onClick={this.showInfo.bind(this)} />
+                <p>American</p>
+              </div>
+              <div className="food-image-holder">
                 <img src="http://i.imgur.com/WRTzhsy.jpg" alt="Japanese Food" id="japanese" onClick={this.showInfo.bind(this)} />
                 <p>Japanese</p>
               </div>
