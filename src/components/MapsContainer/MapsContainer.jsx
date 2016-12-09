@@ -10,8 +10,8 @@ class RestaurantMap extends Component {
 
     const marker = {
       position: {
-        lat: this.props.eatHere.location.coordinate.latitude,
-        lng: this.props.eatHere.location.coordinate.longitude,
+        lat: parseFloat(this.props.center.lat),
+        lng: parseFloat(this.props.center.lng),
       },
     };
 
@@ -24,6 +24,10 @@ class RestaurantMap extends Component {
             defaultCenter={center}
             options={{ streetViewControl: false, mapTypeControl: false }}
           >
+            <Marker
+              key={1}
+              position={marker.position}
+            />
           </GoogleMap>
         }
       />
