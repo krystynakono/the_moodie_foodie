@@ -31,6 +31,7 @@ class App extends Component {
       mood: 'happy',
       restaurants: '',
       eatHere: '',
+      eat_map_center: '',
     };
   }
 
@@ -109,8 +110,22 @@ class App extends Component {
 
   pickOneRestaurant() {
     let index = Math.floor(Math.random() * this.state.restaurants.length);
+    const promise = new Promise((res, rej) => {
+      this.setState({
+        eatHere: this.state.restaurants[index],
+      });
+      if (this.state.eatHere === '') rej(this.state.eatHere);
+      res(this.state.eatHere);
+    });
+    promise.then(result => this.centerEatMap(result));
+  }
+
+  centerEatMap(restaurant) {
     this.setState({
-      eatHere: this.state.restaurants[index],
+      eat_map_center: {
+        lat: restaurant.location.coordinate.latitude,
+        lng: restaurant.location.coordinate.longitude,
+      },
     });
   }
 

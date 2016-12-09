@@ -24,8 +24,6 @@ const oauthToken      = process.env.oauth_token;
 function restaurantSearch(req, res, next) {
   const httpMethod = 'GET';
 
-  console.log(req.params)
-  console.log(req.params.food)
   const food = `${req.params.food}+food`;
   console.log(food);
   // Set parameters
