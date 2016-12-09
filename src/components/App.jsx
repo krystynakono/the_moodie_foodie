@@ -83,6 +83,89 @@ class App extends Component {
     }
   }
 
+  // Update the state mood when user uses dropdown menu
+  moodUpdate(e) {
+    this.setState({
+      mood: e.target.value,
+    });
+    console.log(e.target.value);
+  }
+
+  // Make a fetch to the yelp route to search for restaurants matching a
+  // specific cuisine
+  searchRestaurant(cuisine) {
+    console.log('cuisine: ' + cuisine);
+    fetch(`yelp/${cuisine}`)
+    .then(r => r.json())
+    .then((restaurants) => {
+      this.setState(
+      { restaurants },
+      );
+      console.log(this.state.restaurants);
+      this.pickOneRestaurant();
+      console.log(this.state.eatHere)
+    });
+  }
+
+  pickOneRestaurant() {
+    console.log('pick')
+    console.log(this.state.restaurants.length)
+    let index = Math.floor(Math.random() * this.state.restaurants.length);
+    this.setState({
+      eatHere: this.state.restaurants[index],
+    });
+  }
+
+  setFood() {
+    const promise = new Promise((res, rej) => {
+
+    })
+  }
+
+  // check the state of mood of user and set food equal to the cuisine
+  // that the user likes to eat when they are in that mood.
+  // After setting food equal to that cuisine, call the function that makes
+  // the fetch call to Yelp to get suggested restaurants matching cuisine.
+  getFoodForMood() {
+    // console.log('happy: ' + this.state.happy);
+    // console.log('sad: ' + this.state.sad);
+    // console.log('angry: ' + this.state.angry);
+    // console.log('surprised: ' + this.state.surprised);
+    // console.log('contempt: ' + this.state.contempt);
+    // console.log('disgust: ' + this.state.disgust);
+    // console.log('fear: ' + this.state.fear);
+    // console.log('neutral: ' + this.state.neutral);
+    const setFood = new Promise((res, rej) => {
+      let food;
+      console.log('mood: ' + this.state.mood);
+      if (this.state.mood === 'happy') {
+        food = this.state.happy;
+      } else if (this.state.mood === 'sad') {
+        food = this.state.sad;
+      } else if (this.state.mood === 'angry') {
+        food = this.state.angry;
+      } else if (this.state.mood === 'surprised') {
+        food = this.state.surprised;
+      } else if (this.state.mood === 'contempt') {
+        food = this.state.contempt;
+      } else if (this.state.mood === 'disgust') {
+        food = this.state.disgust;
+      } else if (this.state.mood === 'fear') {
+        food = this.state.fear;
+      } else if (this.state.mood === 'neutral') {
+        food = this.state.neutral;
+      }
+      // food = this.state[mood];
+      if(!food) rej(food);
+      res(food);
+    });
+    setFood.then(result => this.searchRestaurant(result));
+  }
+
+  // getFoodForMood() {
+  //   this.searchRestaurant(this.state[mood]);
+  // }
+
   // In order to save user preferences of mood to food, user will take a
   // quiz when logging in. The counter will start at 0 and the first emotion
   // we will ask about is 'HAPPY'. This function will listen for a click on
@@ -287,6 +370,14 @@ class App extends Component {
       if (response.id !== 'invalid') {
         this.setState({
           userID: response.id,
+          happy: response.user.happy,
+          sad: response.user.sad,
+          angry: response.user.angry,
+          surprised: response.user.surprised,
+          contempt: response.user.contempt,
+          disgust: response.user.disgust,
+          fear: response.user.fear,
+          neutral: response.user.neutral,
         });
         // saves jwt token and ID
         localStorage.id = response.id;

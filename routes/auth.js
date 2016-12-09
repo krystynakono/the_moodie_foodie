@@ -9,8 +9,15 @@ const { createUser } = require('../models/user');
 router.post('/login', logIn, (req, res) => {
   res.json({
     token: res.token,
-    id: res.id || 'invalid',
-    happy: res.happy || '',
+    id: res.user.id || 'invalid',
+    user: res.user,
+    // sad: res.sad || '',
+    // angry: res.angry || '',
+    // surprised: res.surprised || '',
+    // contempt: res.contempt || '',
+    // disgust: res.disgust || '',
+    // fear: res.fear || '',
+    // neutral: res.neutral || '',
   });
 });
 
