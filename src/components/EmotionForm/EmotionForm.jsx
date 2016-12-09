@@ -8,7 +8,7 @@ class EmotionForm extends Component {
       <div className="emotion-form-container">
         <h2>I'm feeling rather...</h2>
         <div id="emotion-form" ref="emotionform">
-          <select>
+          <select onChange={this.props.moodUpdate}>
             <option value="happy">happy</option>
             <option value="sad">sad</option>
             <option value="angry">hangry</option>

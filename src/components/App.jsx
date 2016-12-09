@@ -26,7 +26,7 @@ class App extends Component {
       userID: 0,
       emotion: 'HAPPY?',
       counter: 0,
-      mood: '',
+      mood: 'happy',
     };
   }
 
@@ -59,11 +59,27 @@ class App extends Component {
       return (
         <EmotionForm
           mood={this.state.mood}
+          moodUpdate={event => this.moodUpdate(event)}
         />
       );
     }
   }
 
+  // Update the state mood when user uses dropdown menu
+  moodUpdate(e) {
+    this.setState({
+      mood: e.target.value,
+    });
+    console.log(e.target.value)
+  }
+
+  // In order to save user preferences of mood to food, user will take a
+  // quiz when logging in. The counter will start at 0 and the first emotion
+  // we will ask about is 'HAPPY'. This function will listen for a click on
+  // each food image. Once a user clicks a food image, it will grab the id
+  // of that image, set the state of that emotion to that id, increment the
+  // counter and change the emotion that we are asking about. Each count
+  // will be updating the state of a different emotion.``
   quiz(e) {
     if (this.state.counter === 0) {
       this.setState({
@@ -235,25 +251,8 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  // handles the logout of the user, will revert to login state
-  // handleLogout() {
-  //   fetch('/auth/logout', {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     method: 'DELETE',
-  //     body: JSON.stringify({
-  //       id: this.state.userID,
-  //     }),
-  //   });
-  //   this.setState({
-  //     userID: 0,
-  //     isLoggedIn: false,
-  //   });
-  //   console.log('logging out');
-  //   window.localStorage.token = null;
-  //   window.localStorage.id = null;
-  // }
+  // When a user clicks on the log out button, it will reset the state of
+  // isLoggedIn to false and set the state of the current userID to 0.
   handleLogout() {
     this.setState({
       isLoggedIn: false,
@@ -294,16 +293,6 @@ class App extends Component {
     })
     .catch(err => console.log(err));
   }
-
-  // doLogin() {
-  //   fetch('/your/login/route', {})
-  //   .then(r => r.json())
-  //   .then((token) => {
-  //     localStorage.setItem('authToken', token)
-  //     const newToken = localStorage.getItem('authToken')
-  //     this.setState({ isLoggedIn: true })
-  //   })
-  // }
 
 
   render() {
