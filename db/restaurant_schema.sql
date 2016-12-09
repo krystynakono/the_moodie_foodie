@@ -2,15 +2,16 @@ DROP TABLE IF EXISTS restaurants;
 
 CREATE TABLE restaurants (
 id SERIAL PRIMARY KEY,
-name STRING NOT NULL,
+name TEXT NOT NULL,
 rating INT,
-rating_img STRING,
+rating_img TEXT,
 url TEXT,
 category VARCHAR,
 phone VARCHAR,
-image STRING,
-address STRING,
+image TEXT,
+address TEXT,
 lat FLOAT,
 lng FLOAT,
-user_id INT FOREIGN KEY REFERENCES users(user_id)
+user_id INT REFERENCES users(id)
 );
+

@@ -170,6 +170,12 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+  hideSignUp() {
+    const btn = document.querySelector('#signupModal');
+    const modal = document.querySelector('#signup');
+    btn.style.display = 'none';
+    modal.style.display = 'none';
+  }
   // sends the signup data to the api server
   // encrypts new user data and saves in db
   // authenticates the response and returns the user id
@@ -186,7 +192,7 @@ class App extends Component {
         sad: this.state.sad,
         angry: this.state.angry,
         surprised: this.state.surprised,
-        contempt: this.state.comtempt,
+        contempt: this.state.contempt,
         disgust: this.state.disgust,
         fear: this.state.fear,
         neutral: this.state.neutral,
@@ -209,6 +215,7 @@ class App extends Component {
       signupPass: '',
     }))
     .then(console.log('signup successful'))
+    .then(this.hideSignUp())
     .catch(err => console.log(err));
   }
 

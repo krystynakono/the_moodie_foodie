@@ -20,8 +20,11 @@ function createUser(req, res, next) {
     fear: req.body.fear,
     neutral: req.body.neutral,
   };
+  console.log(userObject);
 
-  psql.none('INSERT INTO users (username, password, happy, sad, angry, surprised, conptempt, disgust, fear, neutral) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);',
+  psql.none(`INSERT INTO users
+            (username, password, happy, sad, angry, surprised, contempt, disgust, fear, neutral)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
              [userObject.username, userObject.password, userObject.happy, userObject.sad, userObject.angry, userObject.surprised, userObject.contempt, userObject.disgust, userObject.fear, userObject.neutral])
   .then(() => {
     psql.one(`SELECT id
