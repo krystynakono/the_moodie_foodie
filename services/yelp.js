@@ -10,6 +10,7 @@ const oauthSignature  = require('oauth-signature');
 const n               = require('nonce')();
 const qs              = require('querystring');
 const _               = require('lodash');
+const pgp             = require('pg-promise')();
 
 // The url we are using for the request
 const url             = 'http://api.yelp.com/v2/search';

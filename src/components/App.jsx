@@ -28,6 +28,7 @@ class App extends Component {
       counter: 0,
       mood: 'happy',
       restaurants: '',
+      eatHere: '',
     };
   }
 
@@ -56,7 +57,7 @@ class App extends Component {
   // Checks to see if the state isLoggedIn is true.
   // If the user is logged in, the emotion form will render.
   emotionForm(isLoggedIn) {
-    if (isLoggedIn){
+    if (isLoggedIn) {
       return (
         <EmotionForm
           mood={this.state.mood}
@@ -83,11 +84,24 @@ class App extends Component {
     .then(restaurants => this.setState(
       { restaurants },
     ))
-    .then(() => console.log(this.state.restaurants));
+    .then(() => console.log(this.state.restaurants))
+    .then(this.pickOneRestaurant())
   }
 
+  pickOneRestaurant() {
+    console.log('pick')
+    console.log(this.state.restaurants.length)
+    let index = Math.floor(Math.random() * this.state.restaurants.length);
+    this.setState({
+      eatHere: this.state.restaurants[index],
+    });
+  }
+
+  // check the state of mood of user and set food equal to the cuisine
+  // that the user likes to eat when they are in that mood.
+  // After setting food equal to that cuisine, call the function that makes
+  // the fetch call to Yelp to get suggested restaurants matching cuisine.
   getFoodForMood() {
-    console.log('moody')
     let food;
     const setFood = new Promise(function () {
       if (this.state.mood === 'happy') {
@@ -110,6 +124,7 @@ class App extends Component {
     });
     setFood.then(this.searchRestaurant(food));
   }
+
 
   // In order to save user preferences of mood to food, user will take a
   // quiz when logging in. The counter will start at 0 and the first emotion
@@ -274,7 +289,7 @@ class App extends Component {
       if (response.id) {
         this.setState({
           userID: response.id,
-        })
+        });
         localStorage.id = response.id;
       } else {
         alert(response.message);
@@ -304,11 +319,11 @@ class App extends Component {
   authenticateUser() {
     let token;
     if ((localStorage.getItem('token') === null)) {
-      token == 'invalid';
+      token === 'invalid';
     } else {
-      token = localStorage.getItem('token')
+      token = localStorage.getItem('token');
     }
-    console.log(token)
+    console.log(token);
     fetch('/auth/verify', {
       headers: {
         'Content-Type': 'application/json',
