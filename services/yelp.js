@@ -24,11 +24,10 @@ const oauthToken      = process.env.oauth_token;
 function restaurantSearch(req, res, next) {
   const httpMethod = 'GET';
 
-  console.log(req.params);
   const food = req.params.food;
   // Set parameters
   const userParams = {
-    term: 'thai food',
+    term: food,
     location: 'manhattan',
     cll: '40.7589, 73.9851',
   };

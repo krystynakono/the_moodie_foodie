@@ -108,18 +108,10 @@ class App extends Component {
   }
 
   pickOneRestaurant() {
-    console.log('pick')
-    console.log(this.state.restaurants.length)
     let index = Math.floor(Math.random() * this.state.restaurants.length);
     this.setState({
       eatHere: this.state.restaurants[index],
     });
-  }
-
-  setFood() {
-    const promise = new Promise((res, rej) => {
-
-    })
   }
 
   // check the state of mood of user and set food equal to the cuisine
@@ -161,10 +153,6 @@ class App extends Component {
     });
     setFood.then(result => this.searchRestaurant(result));
   }
-
-  // getFoodForMood() {
-  //   this.searchRestaurant(this.state[mood]);
-  // }
 
   // In order to save user preferences of mood to food, user will take a
   // quiz when logging in. The counter will start at 0 and the first emotion
@@ -330,8 +318,6 @@ class App extends Component {
   // updates all of the login/signup forms, filters by name
   updateAuthForms(e) {
     const value = e.target.value;
-    // console.log(e.target.name);
-    // console.log(e.target.value);
     switch (e.target.name) {
       case 'loginName':
         this.setState({ loginName: value });
