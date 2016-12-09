@@ -18,7 +18,7 @@ class EmotionForm extends Component {
             <option value="fear">afraid</option>
             <option value="neutral">neutral</option>
           </select>
-          <button id="feelings-selector">Go</button>
+          <button id="feelings-selector">Go!</button>
         </div>
       </div>
     );
