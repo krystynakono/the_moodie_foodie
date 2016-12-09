@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
 import EmotionForm from './EmotionForm/EmotionForm.jsx';
-// import Restaurant from './Restaurant/Restaurant.jsx';
+import Restaurant from './Restaurant/Restaurant.jsx';
 // import MapContainer from './MapContainer/MapContainer.jsx';
 import './App.css';
 
@@ -74,6 +74,9 @@ class App extends Component {
     if (eatHere !== '') {
       return (
         <div className="restaurant-holder">
+          <Restaurant
+            eatHere={this.state.eatHere}
+          />
 
         </div>
       );
