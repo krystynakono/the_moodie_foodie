@@ -27,6 +27,7 @@ function logIn(req, res, next) {
         console.log(user);
         res.id = user.id;
         res.token = createToken(user.id);
+        res.user = user;
         next();
       }
     })
