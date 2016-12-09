@@ -13,6 +13,9 @@ const yelpRouter = require('./routes/yelp');
 // authorization router to signup/login and validate users
 const authRouter = require('./routes/auth');
 
+// import router for restaurant DB
+const restaurantRoute = require('./routes/restaurant');
+
 // set up some looging
 app.use(logger('dev'));
 
@@ -25,5 +28,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 // map our routes
 app.use('/yelp', yelpRouter);
 app.use('/auth', authRouter);
+app.use('/restaurant', restaurantRoute);
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});

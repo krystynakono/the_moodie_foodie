@@ -20,7 +20,11 @@ class Restaurant extends Component {
           <p>{this.props.eatHere.location.display_address[2]}</p>
         </div>
         <p>{this.props.eatHere.display_phone}</p>
+        <div className="hidden-restaurant-form">
+          <button onClick={this.props.saveRestaurant}>Save for later</button>
+        </div>
       </div>
+
     );
   }
 }
