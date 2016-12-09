@@ -119,9 +119,9 @@ class App extends Component {
   // After setting food equal to that cuisine, call the function that makes
   // the fetch call to Yelp to get suggested restaurants matching cuisine.
   getFoodForMood() {
+    console.log('mood: ' + this.state.mood);
     const setFood = new Promise((res, rej) => {
       let food;
-      console.log('mood: ' + this.state.mood);
       if (this.state.mood === 'happy') {
         food = this.state.happy;
       } else if (this.state.mood === 'sad') {
@@ -212,66 +212,6 @@ class App extends Component {
     }
   }
 
-
-  // Update the state mood when user uses dropdown menu
-  moodUpdate(e) {
-    this.setState({
-      mood: e.target.value,
-    });
-    console.log(e.target.value);
-  }
-
-  // Make a fetch to the yelp route to search for restaurants matching a
-  // specific cuisine
-  searchRestaurant(cuisine) {
-    fetch(`yelp/${cuisine}`)
-    .then(r => r.json())
-    .then((restaurants) => {
-      this.setState(
-      { restaurants },
-      );
-      console.log(this.state.restaurants);
-      this.pickOneRestaurant();
-      console.log(this.state.eatHere)
-    });
-  }
-
-  // pick a random restaurant from the array of returned restaurants
-  pickOneRestaurant() {
-    let index = Math.floor(Math.random() * this.state.restaurants.length);
-    console.log('index: ' + index)
-    this.setState({
-      eatHere: this.state.restaurants[index],
-    });
-  }
-
-  // check the state of mood of user and set food equal to the cuisine
-  // that the user likes to eat when they are in that mood.
-  // After setting food equal to that cuisine, call the function that makes
-  // the fetch call to Yelp to get suggested restaurants matching cuisine.
-  getFoodForMood() {
-    let food;
-    const setFood = new Promise(function () {
-      if (this.state.mood === 'happy') {
-        food = this.state.happy;
-      } else if (this.state.mood === 'sad') {
-        food = this.state.sad;
-      } else if (this.state.mood === 'angry') {
-        food = this.state.angry;
-      } else if (this.state.mood === 'surprised') {
-        food = this.state.surprised;
-      } else if (this.state.mood === 'contempt') {
-        food = this.state.contempt;
-      } else if (this.state.mood === 'disgust') {
-        food = this.state.disgust;
-      } else if (this.state.mood === 'fear') {
-        food = this.state.fear;
-      } else if (this.state.mood === 'neutral') {
-        food = this.state.neutral;
-      }
-    });
-    setFood.then(this.searchRestaurant(food));
-  }
 
   // Save a restaurant to the DB
   saveRestaurant(formData) {
