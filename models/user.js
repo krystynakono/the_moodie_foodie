@@ -11,10 +11,18 @@ function createUser(req, res, next) {
   const userObject = {
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, SALTROUNDS),
+    happy: req.body.happy,
+    sad: req.body.sad,
+    angry: req.body.angry,
+    surprised: req.body.surprised,
+    contempt: req.body.contempt,
+    disgust: req.body.disgust,
+    fear: req.body.fear,
+    neutral: req.body.neutral,
   };
 
-  psql.none('INSERT INTO users (username, password) VALUES ($1, $2);',
-             [userObject.username, userObject.password])
+  psql.none('INSERT INTO users (username, password, happy, sad, angry, surprised, conptempt, disgust, fear, neutral) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);',
+             [userObject.username, userObject.password, userObject.happy, userObject.sad, userObject.angry, userObject.surprised, userObject.contempt, userObject.disgust, userObject.fear, userObject.neutral])
   .then(() => {
     psql.one(`SELECT id
               FROM users

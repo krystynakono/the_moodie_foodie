@@ -14,7 +14,17 @@ class App extends Component {
       signupPass: '',
       loginName: '',
       loginPass: '',
+      happy: '',
+      sad: '',
+      angry: '',
+      surprised: '',
+      contempt: '',
+      disgust: '',
+      fear: '',
+      neutral: '',
       userID: 0,
+      emotion: 'HAPPY?',
+      counter: 0,
     };
   }
 
@@ -30,8 +40,70 @@ class App extends Component {
           signupName={this.state.signupName}
           signupPass={this.state.signupPass}
           handleLogout={this.handleLogout.bind(this)}
+          emotion={this.state.emotion}
+          quiz={event => this.quiz(event)}
+          counter={this.state.counter}
         />
       );
+    }
+  }
+
+  quiz(e) {
+    if (this.state.counter === 0) {
+      this.setState({
+        happy: e.target.id,
+        emotion: 'SAD?',
+        counter: 1,
+      });
+    } else if (this.state.counter === 1) {
+      console.log('happy: ' + this.state.happy);
+      this.setState({
+        sad: e.target.id,
+        emotion: 'HANGRY?',
+        counter: 2,
+      });
+    } else if (this.state.counter === 2) {
+      console.log('sad: ' + this.state.sad);
+      this.setState({
+        angry: e.target.id,
+        emotion: 'SURPRISED?',
+        counter: 3,
+      });
+    } else if (this.state.counter === 3) {
+      console.log('angry: ' + this.state.angry);
+      this.setState({
+        surprised: e.target.id,
+        emotion: 'CONTEMPT?',
+        counter: 4,
+      });
+    } else if (this.state.counter === 4) {
+      console.log('surprised: ' + this.state.surprised);
+      this.setState({
+        contempt: e.target.id,
+        emotion: 'DISGUSTED?',
+        counter: 5,
+      });
+    } else if (this.state.counter === 5) {
+      console.log('contempt: ' + this.state.contempt);
+      this.setState({
+        disgust: e.target.id,
+        emotion: 'AFRAID?',
+        counter: 6,
+      });
+    } else if (this.state.counter === 6) {
+      console.log('disgust: ' + this.state.disgust);
+      this.setState({
+        fear: e.target.id,
+        emotion: 'NEUTRAL?',
+        counter: 7,
+      });
+    } else if (this.state.counter === 7) {
+      console.log('afraid: ' + this.state.neutral);
+      this.setState({
+        neutral: e.target.id,
+        emotion: '',
+        counter: 8,
+      });
     }
   }
 
@@ -110,6 +182,14 @@ class App extends Component {
       body: JSON.stringify({
         username: this.state.signupName,
         password: this.state.signupPass,
+        happy: this.state.happy,
+        sad: this.state.sad,
+        angry: this.state.angry,
+        surprised: this.state.surprised,
+        contempt: this.state.comtempt,
+        disgust: this.state.disgust,
+        fear: this.state.fear,
+        neutral: this.state.neutral,
       }),
     })
     .then(r => r.json())
