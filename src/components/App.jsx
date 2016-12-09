@@ -3,7 +3,7 @@ import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
 import EmotionForm from './EmotionForm/EmotionForm.jsx';
 import Restaurant from './Restaurant/Restaurant.jsx';
-// import MapContainer from './MapContainer/MapContainer.jsx';
+import MapContainer from './MapsContainer/MapsContainer.jsx';
 import './App.css';
 
 
@@ -78,6 +78,19 @@ class App extends Component {
           <Restaurant
             eatHere={this.state.eatHere}
             saveRestaurant={this.restaurantForm.bind(this)}
+          />
+        </div>
+      );
+    }
+  }
+
+  renderMap(center) {
+    if (center !== '') {
+      return (
+        <div style={{ width: '300px', height: '300px' }} >
+          <MapContainer
+            center={this.state.eat_map_center}
+            eatHere={this.state.eatHere}
           />
         </div>
       );
@@ -431,7 +444,10 @@ class App extends Component {
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.isLoggedIn)}
-        {this.restaurantInfo(this.state.eatHere)}
+        <div id="routlette-results">
+          {this.restaurantInfo(this.state.eatHere)}
+          {this.renderMap(this.state.eat_map_center)}
+        </div>
       </div>
     );
   }

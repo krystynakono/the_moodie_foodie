@@ -29,7 +29,7 @@ module.exports = {
       title: 'The Moodie Foodie',
       xhtml: true,
       inject: true,
-      scripts: [`https://maps.googleapis.com/maps/api/js?libraries=visualization&key=${MAPS_KEY}`],
+      scripts: [`https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDLO9BWFDxOz2rzAjvkDwel7aRz025PcgY`],
       template: require('html-webpack-template'),
       appMountId: 'root-container',
     }),

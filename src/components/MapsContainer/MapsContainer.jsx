@@ -24,9 +24,6 @@ class RestaurantMap extends Component {
             defaultCenter={center}
             options={{ streetViewControl: false, mapTypeControl: false }}
           >
-            <Marker
-              marker={marker}
-            />
           </GoogleMap>
         }
       />

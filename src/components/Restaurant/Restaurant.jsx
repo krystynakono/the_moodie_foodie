@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import MapContainer from '../MapsContainer/MapsContainer.jsx';
 import './Restaurant.css';
 
 class Restaurant extends Component {
