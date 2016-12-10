@@ -373,7 +373,7 @@ class App extends Component {
     const formData = {
       name: this.state.eatHere.name,
       rating: this.state.eatHere.rating,
-      rating_img: this.state.eatHere.rating_img,
+      rating_img: this.state.eatHere.rating_img_url,
       url: this.state.eatHere.url,
       category: this.state.eatHere.categories[0],
       phone: this.state.eatHere.display_phone,
