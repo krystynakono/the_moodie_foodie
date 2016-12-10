@@ -7,7 +7,7 @@ class SavedMap extends Component {
     const savedMapContainer = <div style={{ height: '100%', width: '100%' }} />
 
     const center = {
-      lat: 40.7128,
+      lat: 40.7528,
       lng: -74.0059,
     };
 
