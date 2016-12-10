@@ -16,6 +16,9 @@ const authRouter = require('./routes/auth');
 // import router for restaurant DB
 const restaurantRoute = require('./routes/restaurant');
 
+// import router for google maps reverse geocoding
+const mapsRouter = require('./routes/maps');
+
 // set up some looging
 app.use(logger('dev'));
 
@@ -29,5 +32,6 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/yelp', yelpRouter);
 app.use('/auth', authRouter);
 app.use('/restaurant', restaurantRoute);
+app.use('/maps', mapsRouter);
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});

@@ -130,17 +130,34 @@ class App extends Component {
 
   // success function will be called in geoFindMe if geolocation is available
   // if will set the state location equal to the user's current location
+  // success(position) {
+  //   let latitude = position.coords.latitude;
+  //   let longitude = position.coords.longitude;
+
+  //   console.log(latitude, longitude);
+  //   this.setState({
+  //     location: {
+  //       lat: latitude,
+  //       lng: longitude,
+  //     },
+  //   });
+  // }
+
   success(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
 
-    console.log(latitude, longitude);
-    this.setState({
-      location: {
-        lat: latitude,
-        lng: longitude,
-      },
+    const promise = new Promise((res, rej) => {
+      this.setState({
+        location: {
+          lat: latitude,
+          lng: longitude,
+        },
+      });
+      if (this.state.location === '') rej(this.state.location);
+      res(this.state.location);
     });
+    promise.then(result => this.getAddress(result));
   }
 
   // Geolocation help from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
@@ -155,6 +172,16 @@ class App extends Component {
     }
 
     navigator.geolocation.getCurrentPosition(this.success.bind(this), error);
+  }
+
+  getAddress(location) {
+    const lat = location.lat;
+    const lng = location.lng;
+    console.log('get address');
+    fetch(`/maps/${lat}/${lng}`)
+    .then(r => r.json())
+    .then((results) => console.log(results))
+    .catch(err => console.log(err));
   }
 
   // Update the state mood when user uses dropdown menu
