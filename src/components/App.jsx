@@ -15,6 +15,7 @@ class App extends Component {
 
     this.state = {
       isLoggedIn: false,
+      emotionForm: false,
       signupName: '',
       signupPass: '',
       loginName: '',
@@ -63,10 +64,10 @@ class App extends Component {
     }
   }
 
-  // Checks to see if the state isLoggedIn is true.
+  // Checks to see if the state emotionForm is true.
   // If the user is logged in, the emotion form will render.
-  emotionForm(isLoggedIn) {
-    if (isLoggedIn) {
+  emotionForm(emotionForm) {
+    if (emotionForm) {
       return (
         <EmotionForm
           mood={this.state.mood}
@@ -84,6 +85,7 @@ class App extends Component {
           <Restaurant
             eatHere={this.state.eatHere}
             saveRestaurant={this.restaurantForm.bind(this)}
+            tryAgain={this.tryAgain.bind(this)}
           />
         </div>
       );
@@ -128,21 +130,6 @@ class App extends Component {
       seeSaved: false,
     });
   }
-
-  // success function will be called in geoFindMe if geolocation is available
-  // if will set the state location equal to the user's current location
-  // success(position) {
-  //   let latitude = position.coords.latitude;
-  //   let longitude = position.coords.longitude;
-
-  //   console.log(latitude, longitude);
-  //   this.setState({
-  //     location: {
-  //       lat: latitude,
-  //       lng: longitude,
-  //     },
-  //   });
-  // }
 
   success(position) {
     let latitude = position.coords.latitude;
@@ -218,6 +205,7 @@ class App extends Component {
     const promise = new Promise((res, rej) => {
       this.setState({
         eatHere: this.state.restaurants[index],
+        emotionForm: false,
       });
       if (this.state.eatHere === '') rej(this.state.eatHere);
       res(this.state.eatHere);
@@ -264,6 +252,16 @@ class App extends Component {
       res(food);
     });
     setFood.then(result => this.searchRestaurant(result));
+  }
+
+  tryAgain() {
+    console.log('try again');
+    this.setState({
+      emotionForm: true,
+      eatHere: '',
+      restaurants: '',
+      eat_map_center: '',
+    });
   }
 
   // In order to save user preferences of mood to food, user will take a
@@ -462,7 +460,10 @@ class App extends Component {
     }))
     .then(console.log('logging in user: ', localStorage.id))
     .then(() => {
-      this.setState({ isLoggedIn: true });
+      this.setState({
+        isLoggedIn: true,
+        emotionForm: true,
+      });
     })
     .then(this.geoFindMe.bind(this))
     .catch(err => console.log(err));
@@ -569,7 +570,7 @@ class App extends Component {
           fetchSavedRestaurants={this.fetchSavedRestaurants.bind(this)}
         />
         {this.loggedIn(this.state.isLoggedIn)}
-        {this.emotionForm(this.state.isLoggedIn)}
+        {this.emotionForm(this.state.emotionForm)}
         <div id="routlette-results">
           {this.restaurantInfo(this.state.eatHere)}
           {this.renderMap(this.state.eat_map_center)}

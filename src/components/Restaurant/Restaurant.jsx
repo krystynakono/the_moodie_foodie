@@ -24,6 +24,7 @@ class Restaurant extends Component {
         <div className="hidden-restaurant-form">
           <button onClick={this.props.saveRestaurant}>Save for later</button>
         </div>
+        <button onClick={this.props.tryAgain}>Not feeling it. Try again.</button>
       </div>
 
     );
