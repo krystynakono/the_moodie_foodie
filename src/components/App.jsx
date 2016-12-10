@@ -57,7 +57,6 @@ class App extends Component {
           emotion={this.state.emotion}
           quiz={event => this.quiz(event)}
           counter={this.state.counter}
-          geoFindMe={this.geoFindMe.bind(this)}
         />
       );
     }
@@ -128,16 +127,18 @@ class App extends Component {
     });
   }
 
-  // getUserLocation() {
-  //   fetch('/maps')
-  //   .then(r => r.json())
-  //   .then((location) => {
-  //     this.setState(
-  //       { location },
-  //     );
-  //     console.log('getting location');
-  //   });
-  // }
+  success(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+
+    console.log(latitude, longitude);
+    this.setState({
+      location: {
+        lat: latitude,
+        lng: longitude,
+      },
+    });
+  }
 
   // Geolocation help from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
   geoFindMe() {
@@ -146,18 +147,11 @@ class App extends Component {
       return;
     }
 
-    function success(position) {
-      let latitude = position.coords.latitude;
-      let longitude = position.coords.longitude;
-
-      console.log(latitude, longitude);
-    }
-
     function error() {
       console.log('unable to retrieved your location');
     }
 
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(this.success.bind(this), error);
   }
 
   // Update the state mood when user uses dropdown menu
@@ -415,7 +409,7 @@ class App extends Component {
     .then(() => {
       this.setState({ isLoggedIn: true });
     })
-    .then(this.geoFindMe())
+    .then(this.geoFindMe.bind(this))
     .catch(err => console.log(err));
   }
 
