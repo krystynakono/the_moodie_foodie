@@ -22,6 +22,7 @@ class App extends Component {
       saved: [],
       seeSaved: false,
       location: '',
+      address: '',
       happy: '',
       sad: '',
       angry: '',
@@ -180,7 +181,11 @@ class App extends Component {
     console.log('get address');
     fetch(`/maps/${lat}/${lng}`)
     .then(r => r.json())
-    .then((results) => console.log(results))
+    .then((results) => {
+        this.setState({
+          address: results.formatted_address,
+        });
+    })
     .catch(err => console.log(err));
   }
 
