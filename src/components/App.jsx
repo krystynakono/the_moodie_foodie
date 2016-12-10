@@ -6,6 +6,7 @@ import Restaurant from './Restaurant/Restaurant.jsx';
 import MapContainer from './MapsContainer/MapsContainer.jsx';
 import SavedList from './SavedList/SavedList.jsx';
 import SavedMap from './SavedMap/SavedMap.jsx';
+import globalStyles from './assets/styles/global.css';
 import './App.css';
 
 
@@ -569,6 +570,9 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+        <div id="background-image">
+          <img src="http://i.imgur.com/zwkflAv.jpg" alt=""/>
+        </div>
         <Header
           handleLogout={this.handleLogout.bind(this)}
           fetchSavedRestaurants={this.fetchSavedRestaurants.bind(this)}

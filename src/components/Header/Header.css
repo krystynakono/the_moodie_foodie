@@ -1,13 +1,18 @@
 div .header {
-  background-color: salmon;
+  background-color: #0B3C5D;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: helvetica;
+  box-shadow: 0 1px 2px #1D2731;
 }
 
 .header h1 {
   padding: 20px;
+  margin: 0;
+  color: #D9B310;
+  font-family: 'Metrophobic';
+  text-shadow: 0 1px 1px #1D2731;
 }
 
 .header-links {
@@ -15,6 +20,15 @@ div .header {
   justify-content: space-around;
 }
 
-.header-links h3 {
+.header-links button {
   padding: 20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  font-family: 'News Cycle';
+}
+
+.header-links button:hover {
+  color: skyblue;
 }
