@@ -524,6 +524,10 @@ class App extends Component {
     this.setState({
       isLoggedIn: false,
       userID: 0,
+      emotionForm: false,
+      eatHere: '',
+      restaurants: '',
+      eat_map_center: '',
     });
     console.log('logging out');
   }
