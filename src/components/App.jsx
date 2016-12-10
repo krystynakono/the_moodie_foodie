@@ -113,7 +113,7 @@ class App extends Component {
           <div style={{ width: '300px', height: '300px' }} >
             <SavedMap
               saved={this.state.saved}
-              center={this.state.eat_map_center}
+              location={this.state.location}
             />
           </div>
         </div>
@@ -127,6 +127,8 @@ class App extends Component {
     });
   }
 
+  // success function will be called in geoFindMe if geolocation is available
+  // if will set the state location equal to the user's current location
   success(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;

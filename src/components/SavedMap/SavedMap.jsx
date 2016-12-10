@@ -7,8 +7,8 @@ class SavedMap extends Component {
     const savedMapContainer = <div style={{ height: '100%', width: '100%' }} />
 
     const center = {
-      lat: 40.7528,
-      lng: -74.0059,
+      lat: parseFloat(this.props.location.lat),
+      lng: parseFloat(this.props.location.lng)
     };
 
     const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
