@@ -3,14 +3,22 @@ import './LogIn.css';
 
 class LogIn extends Component {
 
-  onClickMethod(e) {
-    const modal = this.refs.signup;
-    if (modal.style.display === 'block') {
-      modal.style.display = 'none';
-    } else {
-      modal.style.display = 'block';
-    }
-    // modal.style.display = (disp === 'block' ? 'none' : 'block');
+  // onClickMethod(e) {
+  //   const modal = this.refs.signup;
+  //   if (modal.style.display === 'block') {
+  //     modal.style.display = 'none';
+  //   } else {
+  //     modal.style.display = 'block';
+  //   }
+  //   // modal.style.display = (disp === 'block' ? 'none' : 'block');
+  // }
+
+  onClickMethod() {
+    const login = this.refs.login;
+    const signup = this.refs.signup;
+
+    login.style.display = 'none';
+    signup.style.display = 'flex';
   }
 
   showInfo(e) {
@@ -28,31 +36,33 @@ class LogIn extends Component {
   render() {
     return (
       <div className="signin-box">
-        <input
-          type="text"
-          value={this.props.loginName}
-          name="loginName"
-          placeholder="username"
-          onChange={this.props.updateAuthForms}
-        />
-        <input
-          type="password"
-          value={this.props.loginPass}
-          name="loginPass"
-          placeholder="password"
-          onChange={this.props.updateAuthForms}
-        />
-        <button
-          id="login-button"
-          onClick={this.props.handleLogin}
-        >
-          Log In
-        </button>
-        <button id="signupModal" onClick={this.onClickMethod.bind(this)}>Sign Up</button>
+        <div className="log-in-container" ref="login">
+          <input
+            type="text"
+            value={this.props.loginName}
+            name="loginName"
+            placeholder="username"
+            onChange={this.props.updateAuthForms}
+          />
+          <input
+            type="password"
+            value={this.props.loginPass}
+            name="loginPass"
+            placeholder="password"
+            onChange={this.props.updateAuthForms}
+          />
+          <button
+            id="login-button"
+            onClick={this.props.handleLogin}
+          >
+            Log In
+          </button>
+          <button id="signupModal" onClick={this.onClickMethod.bind(this)}>Don't have an account? Sign up here!</button>
+        </div>
         <div id="signup" ref="signup">
           <h3 ref="question">What food do you crave when feeling</h3>
           <div className="emotion-container">
-            <h3 className="emotion">{this.props.emotion}</h3>
+            <h3 id="findme" className="emotion">{this.props.emotion}</h3>
             <div className="food-category-holder" ref="foodholder">
               <div className="food-image-holder">
                 <img src="http://i.imgur.com/xPGzxs8.jpg" alt="Thai Food" id="thai" onClick={this.showInfo.bind(this)} />

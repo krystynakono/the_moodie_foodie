@@ -1,9 +1,98 @@
+.signin-box {
+  height: 50%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.log-in-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #1D2731;
+  opacity: 0.9;
+  border-radius: 7px;
+  padding-top: 50px;
+}
+
+.log-in-container input {
+  width: 80%;
+  border: none;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid white;
+  background-color: #1D2731;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 20px;
+  color: lightgray;
+}
+
+.log-in-container button {
+  background-color: #D9B310;
+  padding: 7px 17px;
+  font-size: 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px #E68E05;
+  opacity: 1;
+}
+
+.log-in-container button:hover {
+  background-color: #AB8D0D;
+}
+
+#signupModal {
+  background-color: #1D2731;
+  opacity: 0.9;
+  color: white;
+  box-shadow: none;
+  font-family: 'News Cycle';
+  margin-top: 45px;
+}
+
+#signupModal:hover {
+  color: #328CC1;
+}
+
 #signup {
   display: none;
+  background-color: papayawhip;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.95;
+  width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px #1D2731;
+}
+
+#signup h3 {
+  font-family: 'News Cycle';
+  color: #1D2731;
+  font-size: 30px;
+  margin: 0;
+}
+
+.emotion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#findme {
+  font-weight: bold;
+  font-family: 'Metrophobic';
+  margin-bottom: 20px;
 }
 
 #userinfo {
   display: none;
+  width: 100%;
 }
 
 .food-category-holder {
@@ -12,6 +101,7 @@
   justify-content: space-around;
   width: 100%;
   height: 120px;
+  padding-top: 30px;
 }
 
 .food-image-holder {
@@ -22,9 +112,39 @@
 .food-image-holder img {
   height: 70%;
   width: 90%;
+  box-shadow: 0 1px 2px #1D2731;
+}
+
+.food-image-holder img:hover {
+  box-shadow: 3px 3px 3px #1D2731;
 }
 
 .food-image-holder p {
   margin: 5px;
   text-align: center;
+}
+
+#userinfo input {
+  width: 35%;
+  padding: 10px 0;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center;
+  font-size: 15px;
+}
+
+#userinfo button {
+  background-color: #0B3C5D;
+  color: white;
+  padding: 10px 17px;
+  border: none;
+  box-shadow: 0 1px 2px #1D2731;
+  border-radius: 10px;
+  font-size: 15px;
+  -webkit-transition: padding 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: padding 0.5s;
+}
+
+#userinfo button:hover {
+  padding: 10px 25px;
 }

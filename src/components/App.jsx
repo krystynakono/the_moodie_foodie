@@ -514,9 +514,19 @@ class App extends Component {
       signupName: '',
       signupPass: '',
     }))
+    .then(this.showLoginForm())
     .then(console.log('signup successful'))
     .then(this.hideSignUp())
     .catch(err => console.log(err));
+  }
+
+  showLoginForm() {
+    console.log('showLoginForm');
+    const login = document.querySelector('.log-in-container');
+    const signupbtn = document.querySelector('#signupModal');
+
+    login.style.display = 'block';
+    signupbtn.style.display = 'none';
   }
 
   // When a user clicks on the log out button, it will reset the state of
