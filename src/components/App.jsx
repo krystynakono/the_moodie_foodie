@@ -5,6 +5,7 @@ import EmotionForm from './EmotionForm/EmotionForm.jsx';
 import Restaurant from './Restaurant/Restaurant.jsx';
 import MapContainer from './MapsContainer/MapsContainer.jsx';
 import SavedList from './SavedList/SavedList.jsx';
+import SavedMap from './SavedMap/SavedMap.jsx';
 import './App.css';
 
 
@@ -103,10 +104,18 @@ class App extends Component {
   seeSavedRestaurants(seeSaved) {
     if (seeSaved) {
       return (
-        <SavedList
-          saved={this.state.saved}
-          close={this.closeSavedRestaurants.bind(this)}
-        />
+        <div className="saved">
+          <SavedList
+            saved={this.state.saved}
+            close={this.closeSavedRestaurants.bind(this)}
+          />
+          <div style={{ width: '300px', height: '300px' }} >
+            <SavedMap
+              saved={this.state.saved}
+              center={this.state.eat_map_center}
+            />
+          </div>
+        </div>
       );
     }
   }
