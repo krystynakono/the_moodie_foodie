@@ -26,7 +26,18 @@ function saveRestaurant(req, res, next) {
   .catch(err => next(err));
 }
 
+// Delete a restaurant from collection
+function deleteRestaurant(req, res, next) {
+  console.log('delete restaurant');
+  db.none(`DELETE FROM restaurants
+           WHERE id = $1;`,
+           req.params.id)
+  .then(next())
+  .catch(err => next(err));
+}
+
 module.exports = {
   getSavedRestaurants,
   saveRestaurant,
+  deleteRestaurant,
 };

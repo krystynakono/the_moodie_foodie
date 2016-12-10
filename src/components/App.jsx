@@ -109,6 +109,7 @@ class App extends Component {
           <SavedList
             saved={this.state.saved}
             close={this.closeSavedRestaurants.bind(this)}
+            delete={this.deleteRestaurant.bind(this)}
           />
           <div style={{ width: '300px', height: '300px' }} >
             <SavedMap
@@ -311,6 +312,26 @@ class App extends Component {
       body: JSON.stringify(formData),
     })
     .then(() => console.log('restaurant saved'));
+  }
+
+  // Delete a saved restaurant from the DB
+  deleteRestaurant(id) {
+    console.log('deleting restaurant #', id);
+    fetch(`/restaurant/${id}`, {
+      method: 'delete',
+    })
+    .then(this.filterSavedRestaurants(id))
+    .catch(err => console.log(err));
+  }
+
+  // Rather than retching all saved restaurants from the DB again, filter
+  // through the saved restaurants and keep all restaurants except for the
+  // one matching the deleted restaurant.
+  filterSavedRestaurants(id) {
+    const saved = this.state.saved.filter((restaurant) => {
+      return restaurant.id !== id;
+    });
+    this.setState({ saved });
   }
 
   // Collect the information from a specific restaurant

@@ -13,6 +13,7 @@ class SavedList extends Component {
         id={restaurant.id}
         name={restaurant.name}
         label={labels[i]}
+        delete={this.props.delete}
       />,
     );
   }

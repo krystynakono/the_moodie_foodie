@@ -7,6 +7,7 @@ const SavedListItem = props => (
     <div className="image-holder">
       <img src={props.image} alt={props.name} />
     </div>
+    <button onClick={() => props.delete(props.id)}>Remove</button>
   </div>
 );
 
