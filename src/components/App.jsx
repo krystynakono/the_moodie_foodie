@@ -4,6 +4,7 @@ import LogIn from './LogIn/LogIn.jsx';
 import EmotionForm from './EmotionForm/EmotionForm.jsx';
 import Restaurant from './Restaurant/Restaurant.jsx';
 import MapContainer from './MapsContainer/MapsContainer.jsx';
+import SavedList from './SavedList/SavedList.jsx';
 import './App.css';
 
 
@@ -17,6 +18,8 @@ class App extends Component {
       signupPass: '',
       loginName: '',
       loginPass: '',
+      saved: [],
+      seeSaved: false,
       happy: '',
       sad: '',
       angry: '',
@@ -95,6 +98,23 @@ class App extends Component {
         </div>
       );
     }
+  }
+
+  seeSavedRestaurants(seeSaved) {
+    if (seeSaved) {
+      return (
+        <SavedList
+          saved={this.state.saved}
+          close={this.closeSavedRestaurants.bind(this)}
+        />
+      );
+    }
+  }
+
+  closeSavedRestaurants() {
+    this.setState({
+      seeSaved: false,
+    });
   }
 
   // Update the state mood when user uses dropdown menu
@@ -274,6 +294,18 @@ class App extends Component {
     this.saveRestaurant(formData);
   }
 
+  // Get all saved restaurants from databased and saved into state
+  fetchSavedRestaurants() {
+    fetch(`/restaurant/${this.state.userID}`)
+    .then(r => r.json())
+    .then((saved) => {
+      this.setState({
+        saved: saved,
+        seeSaved: true,
+      });
+    });
+  }
+
   // code attributed to Nick from Digital Gypsy project
   // updates all of the login/signup forms, filters by name
   updateAuthForms(e) {
@@ -441,12 +473,16 @@ class App extends Component {
       <div className="app">
         <Header
           handleLogout={this.handleLogout.bind(this)}
+          fetchSavedRestaurants={this.fetchSavedRestaurants.bind(this)}
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.isLoggedIn)}
         <div id="routlette-results">
           {this.restaurantInfo(this.state.eatHere)}
           {this.renderMap(this.state.eat_map_center)}
+        </div>
+        <div className="saved-restaurants-list-map-container">
+          {this.seeSavedRestaurants(this.state.seeSaved)}
         </div>
       </div>
     );

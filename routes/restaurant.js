@@ -1,5 +1,11 @@
 const router = require('express').Router();
-const { saveRestaurant } = require('../models/restaurant.js');
+const { getSavedRestaurants, saveRestaurant } = require('../models/restaurant.js');
+
+// Get all saved restaurants
+router.get('/:user_id', getSavedRestaurants, (req, res) => {
+  console.log('get all saved restaurants');
+  res.json(res.saved);
+});
 
 // Save restaurant to restaurant DB
 router.post('/', saveRestaurant, (req, res) => {

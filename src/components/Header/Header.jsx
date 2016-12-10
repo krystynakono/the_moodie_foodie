@@ -6,7 +6,7 @@ const Header = props => (
     <h1>The Moodie Foodie</h1>
     <div className="header-links">
       <button>EAT</button>
-      <button>STARED</button>
+      <button onClick={props.fetchSavedRestaurants}>STARED</button>
       <button onClick={props.handleLogout}>LOG OUT</button>
     </div>
   </div>

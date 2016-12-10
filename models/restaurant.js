@@ -1,5 +1,17 @@
 const db = require('../db/db.js');
 
+// Go to the database and get all the restaurants the user has saved
+function getSavedRestaurants(req, res, next) {
+  db.any(`SELECT * FROM restaurants
+          WHERE user_id = $1;`,
+          req.params.user_id)
+  .then((saved) => {
+    res.saved = saved;
+    next();
+  })
+  .catch(error => next(error));
+}
+
 // The user will save a restaurant to their collection
 function saveRestaurant(req, res, next) {
   console.log('Save model');
@@ -15,5 +27,6 @@ function saveRestaurant(req, res, next) {
 }
 
 module.exports = {
+  getSavedRestaurants,
   saveRestaurant,
 };
