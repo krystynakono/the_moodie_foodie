@@ -201,7 +201,7 @@ class App extends Component {
   // specific cuisine
   searchRestaurant(cuisine) {
     console.log('cuisine: ' + cuisine);
-    fetch(`yelp/${cuisine}`)
+    fetch(`yelp/${cuisine}/${this.state.address}`)
     .then(r => r.json())
     .then((restaurants) => {
       this.setState(

@@ -25,17 +25,19 @@ function restaurantSearch(req, res, next) {
   const httpMethod = 'GET';
 
   const food = `${req.params.food}+food`;
+  const address = req.params.address;
   console.log(food);
   // Set parameters
   const userParams = {
     term: food,
-    location: 'manhattan',
-    cll: '40.7589, 73.9851',
+    location: address,
+    // cll: '40.7589, 73.9851',
   };
 
   // Set the required parameters here
   const requiredParams = {
     sort: '2',
+    radius_filter: 2000,
     oauth_consumer_key: consumerKey,
     oauth_token: oauthToken,
     oauth_nonce: n(),
