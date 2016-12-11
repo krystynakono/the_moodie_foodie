@@ -98,8 +98,9 @@ class App extends Component {
   renderMap(center) {
     if (center !== '') {
       return (
+
         <div className="map-container-div">
-          <div style={{ width: '100%', height: '100%' }} >
+          <div style={{ width: '100%', height: '90%' }} >
             <MapContainer
               center={this.state.eat_map_center}
               eatHere={this.state.eatHere}
@@ -119,7 +120,7 @@ class App extends Component {
             close={this.closeSavedRestaurants.bind(this)}
             delete={this.deleteRestaurant.bind(this)}
           />
-          <div style={{ width: '300px', height: '300px' }} >
+          <div id="save-map-container" style={{ width: '50%', height: '300px' }} >
             <SavedMap
               saved={this.state.saved}
               location={this.state.location}
@@ -133,6 +134,7 @@ class App extends Component {
   closeSavedRestaurants() {
     this.setState({
       seeSaved: false,
+      emotionForm: true,
     });
   }
 
@@ -385,7 +387,9 @@ class App extends Component {
       category: this.state.eatHere.categories[0],
       phone: this.state.eatHere.display_phone,
       image: this.state.eatHere.image_url,
-      address: this.state.eatHere.location.display_address,
+      address1: this.state.eatHere.location.display_address[0],
+      address2: this.state.eatHere.location.display_address[1],
+      address3: this.state.eatHere.location.display_address[2],
       lat: this.state.eatHere.location.coordinate.latitude,
       lng: this.state.eatHere.location.coordinate.longitude,
       user_id: this.state.userID,
@@ -401,8 +405,12 @@ class App extends Component {
       this.setState({
         saved: saved,
         seeSaved: true,
+        eatHere: '',
+        eat_map_center: '',
+        emotionForm: false,
       });
-    });
+    })
+    .then(() => console.log(this.state.saved[0].address))
   }
 
   // code attributed to Nick from Digital Gypsy project

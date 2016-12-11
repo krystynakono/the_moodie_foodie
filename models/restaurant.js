@@ -16,9 +16,9 @@ function getSavedRestaurants(req, res, next) {
 function saveRestaurant(req, res, next) {
   console.log('Save model');
   db.none(`INSERT INTO restaurants
-          (name, rating, rating_img, url, category, phone, image, address, lat, lng, user_id)
-          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11);`,
-          [req.body.name, req.body.rating, req.body.rating_img, req.body.url, req.body.category, req.body.phone, req.body.image, req.body.address, req.body.lat, req.body.lng, req.body.user_id])
+          (name, rating, rating_img, url, category, phone, image, address1, address2, address3, lat, lng, user_id)
+          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);`,
+          [req.body.name, req.body.rating, req.body.rating_img, req.body.url, req.body.category, req.body.phone, req.body.image, req.body.address1, req.body.address2, req.body.address3, req.body.lat, req.body.lng, req.body.user_id])
   .then((restaurant) => {
     res.restaurant = restaurant;
     next();

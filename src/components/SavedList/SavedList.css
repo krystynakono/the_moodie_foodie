@@ -1,0 +1,32 @@
+
+.savedList{
+  max-height: 70vh;
+  width: 40%;
+  overflow: scroll;
+  align-self: flex-start;
+}
+
+
+.saved-title-button h2{
+  font-family: 'News Cycle';
+  font-size: 30px;
+  flex-grow: 4;
+  margin: 10px 0 20px 0;
+  display: inline-block;
+  color: #1D2731;
+  font-weight: bold;
+}
+
+.saved-title-button button {
+  background: none;
+  border: none;
+  font-size: 35px;
+  font-weight: bold;
+  color: #1D2731;
+  float: left;
+}
+
+.saved-title-button button:hover {
+  cursor: pointer;
+  color: #328CC1;
+}

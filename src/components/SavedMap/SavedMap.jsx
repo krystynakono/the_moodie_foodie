@@ -4,7 +4,7 @@ import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 class SavedMap extends Component {
 
   render() {
-    const savedMapContainer = <div style={{ height: '100%', width: '100%' }} />
+    const savedMapContainer = <div style={{ height: '90%', width: '90%' }} />
 
     const center = {
       lat: parseFloat(this.props.location.lat),

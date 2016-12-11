@@ -11,8 +11,17 @@ class SavedList extends Component {
       <SavedListItem
         key={i}
         id={restaurant.id}
-        name={restaurant.name}
         label={labels[i]}
+        name={restaurant.name}
+        rating={restaurant.rating}
+        rating_img={restaurant.rating_img}
+        url={restaurant.url}
+        category={restaurant.category}
+        image={restaurant.image}
+        address1={restaurant.address1}
+        address2={restaurant.address2}
+        address3={restaurant.address3}
+        phone={restaurant.phone}
         delete={this.props.delete}
       />,
     );
@@ -20,9 +29,11 @@ class SavedList extends Component {
 
   render() {
     return (
-      <div className="saved-list">
-        <h2>Saved Spots</h2>
-        <button onClick={this.props.close}>X</button>
+      <div className="savedList">
+        <div className="saved-title-button">
+          <button onClick={this.props.close}>&times;</button>
+          <h2>Saved Spots</h2>
+        </div>
         {this.renderSavedList()}
       </div>
     );
