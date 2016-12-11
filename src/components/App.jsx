@@ -100,7 +100,7 @@ class App extends Component {
       return (
 
         <div className="map-container-div">
-          <div style={{ width: '100%', height: '90%' }} >
+          <div style={{ width: '100%', height: '100%' }} >
             <MapContainer
               center={this.state.eat_map_center}
               eatHere={this.state.eatHere}
@@ -409,8 +409,7 @@ class App extends Component {
         eat_map_center: '',
         emotionForm: false,
       });
-    })
-    .then(() => console.log(this.state.saved[0].address))
+    });
   }
 
   // code attributed to Nick from Digital Gypsy project

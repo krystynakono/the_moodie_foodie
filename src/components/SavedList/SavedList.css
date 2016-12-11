@@ -1,9 +1,10 @@
 
 .savedList{
   max-height: 70vh;
-  width: 40%;
+  width: 45%;
   overflow: scroll;
   align-self: flex-start;
+  padding-left: 20px
 }
 
 
@@ -24,9 +25,16 @@
   font-weight: bold;
   color: #1D2731;
   float: left;
+  margin-top: 10px;
 }
 
 .saved-title-button button:hover {
   cursor: pointer;
   color: #328CC1;
+}
+
+.scroll-list {
+  max-height: 45vh;
+  widows: 100%;
+  overflow: scroll;
 }

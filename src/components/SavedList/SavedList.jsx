@@ -34,7 +34,9 @@ class SavedList extends Component {
           <button onClick={this.props.close}>&times;</button>
           <h2>Saved Spots</h2>
         </div>
-        {this.renderSavedList()}
+        <div className="scroll-list">
+          {this.renderSavedList()}
+        </div>
       </div>
     );
   }

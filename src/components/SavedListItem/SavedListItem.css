@@ -34,5 +34,17 @@
 }
 
 .saved-list-item button {
-  margin-bottom: 20px;
+  margin: 10px 0 20px 0;
+  background-color: #1D2731;
+  color: white;
+  font-size: 15px;
+  padding: 5px 17px;
+  border: none;
+  box-shadow: 0 1px 2px gray;
+  border-radius: 10px;
+}
+
+.saved-list-item button:hover {
+  color: #1D2731;
+  background-color: #D9B310;
 }

@@ -15,7 +15,6 @@ class Restaurant extends Component {
           <p>{this.props.eatHere.snippet_text}
             <a href={this.props.eatHere.url}>more info</a>
           </p>
-          <img src={this.props.eatHere.image_url} alt={this.props.eatHere.name} />
         </div>
         <div className="address">
           <p>{this.props.eatHere.location.display_address[0]}</p>

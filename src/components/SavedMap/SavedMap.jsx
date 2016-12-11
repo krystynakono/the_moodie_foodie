@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import './SavedMap.css';
 
 class SavedMap extends Component {
 
   render() {
-    const savedMapContainer = <div style={{ height: '90%', width: '90%' }} />
+    const savedMapContainer = <div id="see-saved-pins" style={{ height: '90%', width: '90%' }} />
 
     const center = {
       lat: parseFloat(this.props.location.lat),
