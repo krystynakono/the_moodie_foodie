@@ -1,3 +1,67 @@
+.restaurant-info-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  padding: 40px;
+}
+
+.restaurant-info-container h2 {
+  font-family: 'News Cycle';
+  color: #1D2731;
+  font-size: 30px;
+  margin: 0;
+}
+
 .rating {
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating p {
+  margin: 5px;
+}
+
+.rating img {
+  height: 17px;
+}
+
+.snippit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address p {
+  margin: 2px;
+}
+
+.hidden-restaurant-form button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'News Cycle';
+  font-size: 20px;
+  padding: 2px 6px 0 6px;
+  margin-bottom: 20px;
+}
+
+.hidden-restaurant-form button:hover {
+  border-bottom: 1px solid black;
+}
+
+#tryagain {
+  color: white;
+  background-color: #1D2731;
+  padding: 10px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+}
+
+#tryagain:hover {
+  color: #1D2731;
+  background-color: #D9B310;
 }

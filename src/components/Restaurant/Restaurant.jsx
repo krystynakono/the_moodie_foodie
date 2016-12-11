@@ -12,7 +12,9 @@ class Restaurant extends Component {
           <img src={this.props.eatHere.rating_img_url} alt="rating"/>
         </div>
         <div className="snippit">
-          <p>{this.props.eatHere.snippet_text}</p>
+          <p>{this.props.eatHere.snippet_text}
+            <a href={this.props.eatHere.url}>more info</a>
+          </p>
           <img src={this.props.eatHere.image_url} alt={this.props.eatHere.name} />
         </div>
         <div className="address">
@@ -22,9 +24,9 @@ class Restaurant extends Component {
         </div>
         <p>{this.props.eatHere.display_phone}</p>
         <div className="hidden-restaurant-form">
-          <button onClick={this.props.saveRestaurant}>Save for later</button>
+          <button onClick={this.props.saveRestaurant}>{this.props.savebtn}</button>
         </div>
-        <button onClick={this.props.tryAgain}>Not feeling it. Try again.</button>
+        <button id="tryagain" onClick={this.props.tryAgain}>Not feeling it. Let's try this again.</button>
       </div>
 
     );

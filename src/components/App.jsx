@@ -40,6 +40,7 @@ class App extends Component {
       restaurants: '',
       eatHere: '',
       eat_map_center: '',
+      savebtn: 'Save for another time.',
     };
   }
 
@@ -87,6 +88,7 @@ class App extends Component {
             eatHere={this.state.eatHere}
             saveRestaurant={this.restaurantForm.bind(this)}
             tryAgain={this.tryAgain.bind(this)}
+            savebtn={this.state.savebtn}
           />
         </div>
       );
@@ -96,11 +98,13 @@ class App extends Component {
   renderMap(center) {
     if (center !== '') {
       return (
-        <div style={{ width: '300px', height: '300px' }} >
-          <MapContainer
-            center={this.state.eat_map_center}
-            eatHere={this.state.eatHere}
-          />
+        <div className="map-container-div">
+          <div style={{ width: '100%', height: '100%' }} >
+            <MapContainer
+              center={this.state.eat_map_center}
+              eatHere={this.state.eatHere}
+            />
+          </div>
         </div>
       );
     }
@@ -262,6 +266,7 @@ class App extends Component {
       eatHere: '',
       restaurants: '',
       eat_map_center: '',
+      savebtn: 'Save for another time.',
     });
   }
 
@@ -342,6 +347,9 @@ class App extends Component {
       method: 'post',
       body: JSON.stringify(formData),
     })
+    .then(this.setState({
+      savebtn: 'Saved!',
+    }))
     .then(() => console.log('restaurant saved'));
   }
 
@@ -525,7 +533,7 @@ class App extends Component {
     const login = document.querySelector('.log-in-container');
     const signupbtn = document.querySelector('#signupModal');
 
-    login.style.display = 'block';
+    login.style.display = 'flex';
     signupbtn.style.display = 'none';
   }
 
@@ -589,9 +597,11 @@ class App extends Component {
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.emotionForm)}
+        <div className="search-container">
         <div id="routlette-results">
           {this.restaurantInfo(this.state.eatHere)}
           {this.renderMap(this.state.eat_map_center)}
+        </div>
         </div>
         <div className="saved-restaurants-list-map-container">
           {this.seeSavedRestaurants(this.state.seeSaved)}

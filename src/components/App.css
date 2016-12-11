@@ -21,11 +21,23 @@
   height: 100%;
 }
 
-.restaurant-holder {
-  display: flex;
-}
 
 #routlette-results {
   display: flex;
-  padding: 0 30px;
+  align-items: center;
+  justify-content: space-around;
+  background-color: linen;
+  opacity: 0.95;
+  margin-top: 6%;
+}
+
+.restaurant-holder {
+  display: flex;
+  width: 60%;
+}
+
+.map-container-div {
+  width: 35%;
+  height: 300px;
+  box-shadow: 0 1px 2px #1D2731;
 }
