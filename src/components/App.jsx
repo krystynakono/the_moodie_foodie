@@ -594,6 +594,7 @@ class App extends Component {
         <Header
           handleLogout={this.handleLogout.bind(this)}
           fetchSavedRestaurants={this.fetchSavedRestaurants.bind(this)}
+          isLoggedIn={this.state.isLoggedIn}
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.emotionForm)}

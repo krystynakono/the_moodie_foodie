@@ -39,10 +39,13 @@
   border-radius: 5px;
   box-shadow: 0 1px 2px #E68E05;
   opacity: 1;
+  -webkit-transition: padding 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: padding 0.5s;
 }
 
 .log-in-container button:hover {
-  background-color: #AB8D0D;
+/*  background-color: #AB8D0D;*/
+  padding: 7px 25px;
 }
 
 #signupModal {
