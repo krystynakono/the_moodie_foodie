@@ -408,6 +408,7 @@ class App extends Component {
         eatHere: '',
         eat_map_center: '',
         emotionForm: false,
+        savebtn: 'Save for another time.',
       });
     });
   }
@@ -549,11 +550,31 @@ class App extends Component {
   handleLogout() {
     this.setState({
       isLoggedIn: false,
-      userID: 0,
       emotionForm: false,
-      eatHere: '',
+      signupName: '',
+      signupPass: '',
+      loginName: '',
+      loginPass: '',
+      saved: [],
+      seeSaved: false,
+      location: '',
+      address: '',
+      happy: '',
+      sad: '',
+      angry: '',
+      surprised: '',
+      contempt: '',
+      disgust: '',
+      fear: '',
+      neutral: '',
+      userID: 0,
+      emotion: 'HAPPY?',
+      counter: 0,
+      mood: 'happy',
       restaurants: '',
+      eatHere: '',
       eat_map_center: '',
+      savebtn: 'Save for another time.',
     });
     console.log('logging out');
   }
