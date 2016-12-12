@@ -38,6 +38,7 @@ class App extends Component {
       emotion: 'HAPPY?',
       counter: 0,
       mood: 'happy',
+      selfie: [],
       restaurants: '',
       eatHere: '',
       eat_map_center: '',
@@ -182,6 +183,14 @@ class App extends Component {
         });
     })
     .catch(err => console.log(err));
+  }
+
+  saveImage(file) {
+    this.setState({
+      selfie: file,
+    });
+    console.log('save image');
+    console.log('Recieved file: ', file);
   }
 
   // Update the state mood when user uses dropdown menu
@@ -627,7 +636,9 @@ class App extends Component {
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.emotionForm)}
-        <DropzoneBox />
+        <DropzoneBox
+          saveImage={this.saveImage.bind(this)}
+        />
         <div className="search-container">
         <div id="routlette-results">
           {this.restaurantInfo(this.state.eatHere)}
