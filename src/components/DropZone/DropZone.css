@@ -1,0 +1,9 @@
+#dropzone-pic {
+  width: 200px;
+  height: 200px;
+}
+
+#dropzone-pic img {
+  width: 100%;
+  height: 100%;
+}
