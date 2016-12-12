@@ -19,6 +19,9 @@ const restaurantRoute = require('./routes/restaurant');
 // import router for google maps reverse geocoding
 const mapsRouter = require('./routes/maps');
 
+// import router for cloudinary image services
+const cloudinaryRouter = require('./routes/cloudinary');
+
 // set up some looging
 app.use(logger('dev'));
 
@@ -33,5 +36,6 @@ app.use('/yelp', yelpRouter);
 app.use('/auth', authRouter);
 app.use('/restaurant', restaurantRoute);
 app.use('/maps', mapsRouter);
+app.use('/cloudinary', cloudinaryRouter);
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
 import EmotionForm from './EmotionForm/EmotionForm.jsx';
+import DropzoneBox from './DropZone/DropZone.jsx';
 import Restaurant from './Restaurant/Restaurant.jsx';
 import MapContainer from './MapsContainer/MapsContainer.jsx';
 import SavedList from './SavedList/SavedList.jsx';
@@ -626,6 +627,7 @@ class App extends Component {
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.emotionForm)}
+        <DropzoneBox />
         <div className="search-container">
         <div id="routlette-results">
           {this.restaurantInfo(this.state.eatHere)}

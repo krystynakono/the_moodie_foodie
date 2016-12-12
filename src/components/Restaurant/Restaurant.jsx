@@ -13,7 +13,7 @@ class Restaurant extends Component {
         </div>
         <div className="snippit">
           <p>{this.props.eatHere.snippet_text}
-            <a href={this.props.eatHere.url}>more info</a>
+            <a href={this.props.eatHere.url} target="_blank">read more</a>
           </p>
         </div>
         <div className="address">
