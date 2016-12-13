@@ -101,8 +101,6 @@ class App extends Component {
           <Webcamera
           screenshot={this.state.screenshot}
           determineEmotion={this.determineEmotion.bind(this)}
-          // uploadImage={this.uploadImage}
-          // takeScreenshot={this.takeScreenshot.bind(this)}
           />
         </div>
       );
@@ -735,12 +733,8 @@ class App extends Component {
         {this.emotionForm(this.state.emotionForm)}
         <div className="search-container">
           <div id="routlette-results">
-            <div>
-              {this.restaurantInfo(this.state.eatHere)}
-            </div>
-            <div>
-              {this.renderMap(this.state.eat_map_center)}
-            </div>
+            {this.restaurantInfo(this.state.eatHere)}
+            {this.renderMap(this.state.eat_map_center)}
           </div>
         </div>
         <div className="saved-restaurants-list-map-container">
