@@ -80,6 +80,11 @@ class App extends Component {
       );
     }
   }
+          // <DropzoneBox
+          //   saveImage={this.saveImage.bind(this)}
+          //   photo={this.state.photo}
+          //   uploadImage={this.uploadImage.bind(this)}
+          // />
 
   // Checks to see if the state emotionForm is true.
   // If the user is logged in, the emotion form will render.
@@ -93,10 +98,10 @@ class App extends Component {
             getFoodForMood={this.getFoodForMood.bind(this)}
           />
           <h2>Just not sure? Upload a selfie.</h2>
-          <DropzoneBox
-            saveImage={this.saveImage.bind(this)}
-            photo={this.state.photo}
-            uploadImage={this.uploadImage.bind(this)}
+          <Webcamera
+          screenshot={this.state.screenshot}
+          // uploadImage={this.uploadImage}
+          // takeScreenshot={this.takeScreenshot.bind(this)}
           />
         </div>
       );
@@ -225,21 +230,22 @@ class App extends Component {
 
   // This function creates new formData and appends the photo file as the value
   // to the photo key. It is then send to the upload route.
-  uploadImage() {
-    console.log(this.state.photo);
-    const formData = new FormData();
-    formData.append('photo', this.state.photo);
-    fetch('/upload', {
-      method: 'POST',
-      body: formData,
-    })
-    .then(r => r.json())
-    .then((response) => {
-      console.log('image uploaded', response);
-      this.determineEmotion(response);
-    })
-    .catch(err => console.log(err));
-  }
+  // uploadImage(file) {
+  //   // console.log(this.state.photo);
+  //   console.log('file: ', file);
+  //   const formData = new FormData();
+  //   formData.append('photo', file);
+  //   fetch('/upload', {
+  //     method: 'POST',
+  //     body: formData,
+  //   })
+  //   .then(r => r.json())
+  //   .then((response) => {
+  //     console.log('image uploaded', response);
+  //     // this.determineEmotion(response);
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
   determineEmotion(url) {
     console.log('url: ', url);
@@ -736,11 +742,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-        <Webcamera
-          screenshot={this.state.screenshot}
-          tab={this.state.tab}
-          // takeScreenshot={this.takeScreenshot.bind(this)}
-        />
         <div className="saved-restaurants-list-map-container">
           {this.seeSavedRestaurants(this.state.seeSaved)}
         </div>
