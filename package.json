@@ -69,6 +69,7 @@
     "react-dropzone": "^3.7.3",
     "react-google-maps": "^4.11.0",
     "react-icons": "^2.2.1",
+    "react-webcam": "0.0.14",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1"

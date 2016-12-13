@@ -28,7 +28,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'The Moodie Foodie',
       xhtml: true,
-      inject: true,
+      inject: false,
       scripts: [`https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDLO9BWFDxOz2rzAjvkDwel7aRz025PcgY`],
       template: require('html-webpack-template'),
       appMountId: 'root-container',
@@ -43,7 +43,10 @@ module.exports = {
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
       { test: /\.(png|gif|jpg)$/, loader: 'file-loader?name=/images/[name].[ext]' },
       { test: /\.ico$/, loader: 'file-loader?name=/[name].[ext]' },
-      { test: /\.jsx?$/, loader: 'babel' },
+      {
+        exclude: /(node_modules|bower_components)/,
+        test: /\.jsx?$/,
+        loader: 'babel' },
       {
         test:   /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader?limit=100&mimetype=application/font-woff&name=/fonts/[name].[ext]',

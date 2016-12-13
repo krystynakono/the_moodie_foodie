@@ -3,6 +3,7 @@ import Header from './Header/Header.jsx';
 import LogIn from './LogIn/LogIn.jsx';
 import EmotionForm from './EmotionForm/EmotionForm.jsx';
 import DropzoneBox from './DropZone/DropZone.jsx';
+import Webcamera from './Webcamera/Webcamera.jsx';
 import Restaurant from './Restaurant/Restaurant.jsx';
 import MapContainer from './MapsContainer/MapsContainer.jsx';
 import SavedList from './SavedList/SavedList.jsx';
@@ -37,8 +38,10 @@ class App extends Component {
       userID: 0,
       emotion: 'HAPPY?',
       counter: 0,
-      mood: 'happy',
+      mood: 'happiness',
       photo: '',
+      // screenshot: null,
+      tab: 0,
       formData: '',
       emotions: '',
       restaurants: '',
@@ -203,6 +206,14 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+  // takeScreenshot() {
+  //   const screenshot = document.getElementById('selfie').firstChild;
+  //   console.log(screenshot);
+  //   // this.setState(
+  //   //   { screenshot },
+  //   // );
+  // }
+
   // When a file is dropped into the dropzone, this function will save the
   // image file into the state photo.
   saveImage(files) {
@@ -325,13 +336,13 @@ class App extends Component {
     console.log('mood: ' + this.state.mood);
     const setFood = new Promise((res, rej) => {
       let food;
-      if (this.state.mood === 'happy') {
+      if (this.state.mood === 'happiness') {
         food = this.state.happy;
-      } else if (this.state.mood === 'sad') {
+      } else if (this.state.mood === 'sadness') {
         food = this.state.sad;
-      } else if (this.state.mood === 'angry') {
+      } else if (this.state.mood === 'anger') {
         food = this.state.angry;
-      } else if (this.state.mood === 'surprised') {
+      } else if (this.state.mood === 'surprise') {
         food = this.state.surprised;
       } else if (this.state.mood === 'contempt') {
         food = this.state.contempt;
@@ -717,10 +728,19 @@ class App extends Component {
         {this.emotionForm(this.state.emotionForm)}
         <div className="search-container">
           <div id="routlette-results">
-            {this.restaurantInfo(this.state.eatHere)}
-            {this.renderMap(this.state.eat_map_center)}
+            <div>
+              {this.restaurantInfo(this.state.eatHere)}
+            </div>
+            <div>
+              {this.renderMap(this.state.eat_map_center)}
+            </div>
           </div>
         </div>
+        <Webcamera
+          screenshot={this.state.screenshot}
+          tab={this.state.tab}
+          // takeScreenshot={this.takeScreenshot.bind(this)}
+        />
         <div className="saved-restaurants-list-map-container">
           {this.seeSavedRestaurants(this.state.seeSaved)}
         </div>
