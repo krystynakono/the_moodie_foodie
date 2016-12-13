@@ -185,16 +185,17 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
+  // When a file is dropped into the dropzone, this function will save the
+  // image file into the state photo.
   saveImage(files) {
     console.log(files);
     this.setState({
       photo: files[0],
     });
-
-    console.log('formData', this.state.formData);
   }
 
-
+  // This function creates new formData and appends the photo file as the value
+  // to the photo key. It is then send to the upload route.
   uploadImage() {
     console.log(this.state.photo);
     const formData = new FormData();
@@ -204,7 +205,27 @@ class App extends Component {
       body: formData,
     })
     .then(r => r.json())
-    .then((response) => console.log('image uploaded', response))
+    .then((response) => {
+      console.log('image uploaded', response);
+      this.determineEmotion(response);
+    })
+    .catch(err => console.log(err));
+  }
+
+  determineEmotion(url) {
+    console.log('url: ', url);
+    const form = {
+      url: url,
+    };
+    fetch('/emotion', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'post',
+      body: JSON.stringify(form),
+    })
+    .then(r => r.json())
+    .then((response) => console.log(response))
     .catch(err => console.log(err));
   }
 
