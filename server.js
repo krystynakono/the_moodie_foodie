@@ -53,13 +53,6 @@ app.post('/upload', upload.single('photo'), doUpload, (req, res) => {
   res.json(res.urlFile);
 });
 
-// const upload = multer({ dest: 'uploads/' });
-// app.post('/upload', upload.single('photo'), (req, res) => {
-//   console.log(req.file);
-//   res.json(req.file);
-// });
-
-// app.post('/dothething', upload.single(), awsService.doUpload, msService.analyze, )
 
 // import router for Yelp API
 const yelpRouter = require('./routes/yelp');

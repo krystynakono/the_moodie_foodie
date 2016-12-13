@@ -100,6 +100,7 @@ class App extends Component {
           <h2>Just not sure? Upload a selfie.</h2>
           <Webcamera
           screenshot={this.state.screenshot}
+          determineEmotion={this.determineEmotion.bind(this)}
           // uploadImage={this.uploadImage}
           // takeScreenshot={this.takeScreenshot.bind(this)}
           />

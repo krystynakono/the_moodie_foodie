@@ -59,10 +59,11 @@ class Webcamera extends Component {
     .then(r => r.json())
     .then((response) => {
       console.log('image uploaded', response);
+      this.props.determineEmotion(response);
     })
     .catch(err => console.log(err));
   }
-  // }
+
 
   render() {
     return (
