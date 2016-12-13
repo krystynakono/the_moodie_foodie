@@ -79,9 +79,6 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// set default static assets folder
-app.use(express.static(path.join(__dirname, 'dist')));
-
 // map our routes
 app.use('/yelp', yelpRouter);
 app.use('/auth', authRouter);
@@ -89,5 +86,8 @@ app.use('/restaurant', restaurantRoute);
 app.use('/maps', mapsRouter);
 // app.use('/aws', awsRouter);
 app.use('/emotion', emotionRouter);
+
+// set default static assets folder
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});

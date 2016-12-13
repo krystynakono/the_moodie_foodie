@@ -67,3 +67,7 @@
   align-items: center;
   justify-content: center;
 }
+
+.form-selfie h3 {
+  color: white;
+}

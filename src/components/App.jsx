@@ -38,6 +38,7 @@ class App extends Component {
       emotion: 'HAPPY?',
       counter: 0,
       mood: 'happy',
+      photo: '',
       formData: '',
       emotions: '',
       restaurants: '',
@@ -45,6 +46,14 @@ class App extends Component {
       eat_map_center: '',
       savebtn: 'Save for another time.',
     };
+  }
+
+  componentWillMount() {
+    console.log('mounted - will');
+  }
+
+  componentDidMount() {
+    console.log('mounted - did');
   }
 
   // This function checks to see if the state isLoggedIn is false.
@@ -74,11 +83,19 @@ class App extends Component {
   emotionForm(emotionForm) {
     if (emotionForm) {
       return (
-        <EmotionForm
-          mood={this.state.mood}
-          moodUpdate={event => this.moodUpdate(event)}
-          getFoodForMood={this.getFoodForMood.bind(this)}
-        />
+        <div className="form-selfie">
+          <EmotionForm
+            mood={this.state.mood}
+            moodUpdate={event => this.moodUpdate(event)}
+            getFoodForMood={this.getFoodForMood.bind(this)}
+          />
+          <h2>Just not sure? Upload a selfie.</h2>
+          <DropzoneBox
+            saveImage={this.saveImage.bind(this)}
+            photo={this.state.photo}
+            uploadImage={this.uploadImage.bind(this)}
+          />
+        </div>
       );
     }
   }
@@ -231,6 +248,9 @@ class App extends Component {
         emotions: response[0].scores,
       });
       this.dominantMood(this.state.emotions);
+    })
+    .then(() => {
+      this.getFoodForMood();
     })
     .catch(err => console.log(err));
   }
@@ -701,12 +721,6 @@ class App extends Component {
             {this.renderMap(this.state.eat_map_center)}
           </div>
         </div>
-        <DropzoneBox
-          saveImage={this.saveImage.bind(this)}
-          eatHere={this.state.eatHere}
-          uploadImage={this.uploadImage.bind(this)}
-        />
-
         <div className="saved-restaurants-list-map-container">
           {this.seeSavedRestaurants(this.state.seeSaved)}
         </div>
