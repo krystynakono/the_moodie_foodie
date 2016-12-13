@@ -97,7 +97,7 @@ class App extends Component {
             moodUpdate={event => this.moodUpdate(event)}
             getFoodForMood={this.getFoodForMood.bind(this)}
           />
-          <h2>Just not sure? Upload a selfie.</h2>
+          <h3>Just not sure? Upload a selfie.</h3>
           <Webcamera
           screenshot={this.state.screenshot}
           determineEmotion={this.determineEmotion.bind(this)}
@@ -272,7 +272,6 @@ class App extends Component {
   }
 
   dominantMood(obj) {
-    console.log(obj)
     let mood = 'anger';
     let moodValue = obj.anger;
     for (let key in obj) {
@@ -305,7 +304,6 @@ class App extends Component {
       this.setState(
       { restaurants },
       );
-      console.log(this.state.restaurants);
       this.pickOneRestaurant();
       console.log(this.state.eatHere)
     });

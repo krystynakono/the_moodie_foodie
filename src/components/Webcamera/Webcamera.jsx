@@ -12,6 +12,14 @@ class Webcamera extends Component {
     };
   }
 
+  showGoButton(screenshot) {
+    if (screenshot) {
+      return (
+        <button onClick={this.uploadImage.bind(this)}>Go</button>
+      );
+    }
+  }
+
   takeScreenshot() {
     const screenshot = this.refs.webcam.getScreenshot();
     console.log('Take selfie');
@@ -67,19 +75,25 @@ class Webcamera extends Component {
 
   render() {
     return (
-      <div id="selfie">
-        <Webcam
-          ref={"webcam"}
-          id={"webcam"}
-          screenshotFormat={"image/jpeg"}
-        />
-        <div className='screenshots' ref="boo">
-          <div className='controls'>
-            <button onClick={this.takeScreenshot.bind(this)}>Take a selfie!</button>
+      <div className="selfie-container">
+        <div id="selfie">
+          <Webcam
+            ref={"webcam"}
+            id={"webcam"}
+            audio={false}
+            screenshotFormat={"image/jpeg"}
+            height={'100%'}
+            width={'50%'}
+
+          />
+          <div className="screenshots">
+            { this.state.screenshot ? <img src={this.state.screenshot} /> : null }
           </div>
-          { this.state.screenshot ? <img src={this.state.screenshot} /> : null }
         </div>
-        <button onClick={this.uploadImage.bind(this)}>Go</button>
+        <div className='controls'>
+          <button onClick={this.takeScreenshot.bind(this)}>Take a selfie!</button>
+          {this.showGoButton(this.state.screenshot)}
+        </div>
       </div>
     );
   }
