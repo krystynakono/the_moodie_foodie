@@ -11,10 +11,14 @@ class DropzoneBox extends Component {
   render() {
     return (
       <div>
-        <Dropzone onDrop={this.props.saveImage}>
+        <Dropzone
+          onDrop={this.props.saveImage}
+          multiple={false}
+          accept="image/*"
+        >
           <div>Try dropping some files here, or click to select files to upload. </div>
         </Dropzone>
-        {this.props.selfie !== '' ? <div id="dropzone-pic">
+        {this.props.eatHere !== '' ? <div id="dropzone-pic">
           <img src={this.props.selfie['preview']} alt="image" />
         </div> : null}
         <button onClick={this.props.uploadImage}>Go!</button>

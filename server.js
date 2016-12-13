@@ -13,7 +13,6 @@ const PORT = process.argv[2] || process.env.PORT || 3000;
 // and help from https://gist.github.com/adon-at-work/26c8a8e0a1aee5ded03c
 // Thank you SO MUCH Sabrina Mesa and Joey Pinas for ALL the help with multer
 // and AWS!!
-const upload = multer({ dest: 'uploads/' });
 
 // file system
 const fs = require('fs');
@@ -31,7 +30,12 @@ function uploadToS3(file, destFileName, callback) {
 }
 
 function doUpload(req, res, next) {
-  console.log(req.file);
+  console.log('file:', req.file);
+  console.log('files: ', req.files);
+  // console.log('body: ', req.body);
+  // console.log('req: ', req);
+
+  // console.log(req.body);
     // get the file from the req object
   const objFile = req.file;
 
@@ -50,8 +54,10 @@ function doUpload(req, res, next) {
   });
 }
 
-app.post('/upload', upload.single('photos'), doUpload, (req, res) => {
+const upload = multer({ dest: 'uploads/' });
+app.post('/upload', upload.single('photo'), doUpload, (req, res) => {
   res.json(res.urlFile);
+  // res.json(req.files || req.file);
 });
 
 

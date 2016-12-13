@@ -38,7 +38,7 @@ class App extends Component {
       emotion: 'HAPPY?',
       counter: 0,
       mood: 'happy',
-      selfie: '',
+      formData: '',
       restaurants: '',
       eatHere: '',
       eat_map_center: '',
@@ -185,26 +185,27 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  saveImage(file) {
+  saveImage(files) {
+    console.log(files);
     this.setState({
-      selfie: file[0],
+      photo: files[0],
     });
-    console.log(file)
+
+    console.log('formData', this.state.formData);
   }
 
-  uploadImage(e) {
-    e.preventDefault();
-    const form = new FormData();
-    form.append(this.state.selfie.name, this.state.selfie);
+
+  uploadImage() {
+    console.log(this.state.photo);
+    const formData = new FormData();
+    formData.append('photo', this.state.photo);
     fetch('/upload', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'post',
-      body: JSON.stringify(form),
+      method: 'POST',
+      body: formData,
     })
-    .then(() => console.log(form))
-    .then(() => console.log('image uploaded'));
+    .then(r => r.json())
+    .then((response) => console.log('image uploaded', response))
+    .catch(err => console.log(err));
   }
 
   // Update the state mood when user uses dropdown menu
@@ -659,9 +660,10 @@ class App extends Component {
         </div>
         <DropzoneBox
           saveImage={this.saveImage.bind(this)}
-          selfie={this.state.selfie}
+          eatHere={this.state.eatHere}
           uploadImage={this.uploadImage.bind(this)}
         />
+
         <div className="saved-restaurants-list-map-container">
           {this.seeSavedRestaurants(this.state.seeSaved)}
         </div>
