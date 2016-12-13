@@ -227,7 +227,6 @@ class App extends Component {
     })
     .then(r => r.json())
     .then((response) => {
-      console.log(response[0].scores);
       this.setState({
         emotions: response[0].scores,
       });
@@ -247,10 +246,9 @@ class App extends Component {
       }
     }
     console.log(mood);
-    console.log(moodValue);
-    // this.setState({
-    //   mood: mood,
-    // })
+    this.setState(
+      { mood },
+    );
   }
 
   // Update the state mood when user uses dropdown menu
