@@ -39,6 +39,7 @@ class App extends Component {
       counter: 0,
       mood: 'happy',
       formData: '',
+      emotions: '',
       restaurants: '',
       eatHere: '',
       eat_map_center: '',
@@ -225,8 +226,31 @@ class App extends Component {
       body: JSON.stringify(form),
     })
     .then(r => r.json())
-    .then((response) => console.log(response))
+    .then((response) => {
+      console.log(response[0].scores);
+      this.setState({
+        emotions: response[0].scores,
+      });
+      this.dominantMood(this.state.emotions);
+    })
     .catch(err => console.log(err));
+  }
+
+  dominantMood(obj) {
+    console.log(obj)
+    let mood = 'anger';
+    let moodValue = obj.anger;
+    for (let key in obj) {
+      if (obj[key] > moodValue) {
+        mood = key;
+        moodValue = obj[key];
+      }
+    }
+    console.log(mood);
+    console.log(moodValue);
+    // this.setState({
+    //   mood: mood,
+    // })
   }
 
   // Update the state mood when user uses dropdown menu
