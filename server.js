@@ -3,9 +3,57 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const logger = require('morgan');
+const AWS = require('aws-sdk');
+const multer = require('multer');
 
 const app = express();
 const PORT = process.argv[2] || process.env.PORT || 3000;
+
+// code adopted from https://www.npmjs.com/package/multer-s3
+// and help from https://gist.github.com/adon-at-work/26c8a8e0a1aee5ded03c
+// Thank you SO MUCH Sabrina Mesa and Joey Pinas for ALL the help with multer
+// and AWS!!
+const upload = multer({ dest: 'uploads/' });
+
+// file system
+const fs = require('fs');
+
+const s3 = new AWS.S3({ params: { Bucket: 'moodiefoodie' } });
+
+function uploadToS3(file, destFileName, callback) {
+  s3.upload({
+    ACL: 'public-read',
+    Body: fs.createReadStream(path.join(__dirname, file.path)),
+    Key: destFileName.toString(),
+    ContentType: 'image/png', // force download if it's accessed as a top location
+  })
+  .send(callback);
+}
+
+function doUpload(req, res, next) {
+  console.log(req.file);
+    // get the file from the req object
+  const objFile = req.file;
+
+    // create our own random id
+  const newId = '1000' + parseInt(Math.random() * 10000000);
+
+  // call the function uploadToS3 and send an anonymous function as third argument
+  uploadToS3(objFile, newId, (err, data) => {
+    if(err) {
+      console.log(err);
+      next(err);
+    }
+    console.log('data', data);
+    res.urlFile = data.Location;
+    next();
+  });
+}
+
+app.post('/upload', upload.single('photos'), doUpload, (req, res) => {
+  res.json(res.urlFile);
+});
+
 
 // import router for Yelp API
 const yelpRouter = require('./routes/yelp');
@@ -19,14 +67,18 @@ const restaurantRoute = require('./routes/restaurant');
 // import router for google maps reverse geocoding
 const mapsRouter = require('./routes/maps');
 
-// import router for cloudinary image services
-const cloudinaryRouter = require('./routes/cloudinary');
+// import router for aws image services
+// const awsRouter = require('./routes/aws');
+
+// import emotion router
+const emotionRouter = require('./routes/emotion');
 
 // set up some looging
 app.use(logger('dev'));
 
 // This will parse our payload from fetch which is sent as a JSON object
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // set default static assets folder
 app.use(express.static(path.join(__dirname, 'dist')));
@@ -36,6 +88,7 @@ app.use('/yelp', yelpRouter);
 app.use('/auth', authRouter);
 app.use('/restaurant', restaurantRoute);
 app.use('/maps', mapsRouter);
-app.use('/cloudinary', cloudinaryRouter);
+// app.use('/aws', awsRouter);
+app.use('/emotion', emotionRouter);
 
 app.listen(PORT, () => { console.log('Noms 🍕  🌮  🍱  🍟  🍜')});

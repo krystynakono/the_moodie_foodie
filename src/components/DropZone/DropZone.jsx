@@ -17,6 +17,7 @@ class DropzoneBox extends Component {
         {this.props.selfie !== '' ? <div id="dropzone-pic">
           <img src={this.props.selfie['preview']} alt="image" />
         </div> : null}
+        <button onClick={this.props.uploadImage}>Go!</button>
       </div>
     );
   }

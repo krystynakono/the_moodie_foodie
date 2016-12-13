@@ -189,8 +189,22 @@ class App extends Component {
     this.setState({
       selfie: file[0],
     });
-    console.log('save image');
-    console.log('Recieved file: ', file[0]);
+    console.log(file)
+  }
+
+  uploadImage(e) {
+    e.preventDefault();
+    const form = new FormData();
+    form.append(this.state.selfie.name, this.state.selfie);
+    fetch('/upload', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'post',
+      body: JSON.stringify(form),
+    })
+    .then(() => console.log(form))
+    .then(() => console.log('image uploaded'));
   }
 
   // Update the state mood when user uses dropdown menu
@@ -445,6 +459,7 @@ class App extends Component {
     }
   }
 
+
   // passes the login data to the api
   // authenticates the data with server
   // respond with login and user ID
@@ -636,16 +651,17 @@ class App extends Component {
         />
         {this.loggedIn(this.state.isLoggedIn)}
         {this.emotionForm(this.state.emotionForm)}
+        <div className="search-container">
+          <div id="routlette-results">
+            {this.restaurantInfo(this.state.eatHere)}
+            {this.renderMap(this.state.eat_map_center)}
+          </div>
+        </div>
         <DropzoneBox
           saveImage={this.saveImage.bind(this)}
           selfie={this.state.selfie}
+          uploadImage={this.uploadImage.bind(this)}
         />
-        <div className="search-container">
-        <div id="routlette-results">
-          {this.restaurantInfo(this.state.eatHere)}
-          {this.renderMap(this.state.eat_map_center)}
-        </div>
-        </div>
         <div className="saved-restaurants-list-map-container">
           {this.seeSavedRestaurants(this.state.seeSaved)}
         </div>
