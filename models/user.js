@@ -1,6 +1,6 @@
 // adapted from user management code attributed to Rafa @ GA and Digital Gypsy. Thanks!
 // originally using mongo, modified for psql
-const psql = require('../db/db.js');
+const psql = require('./db.js');
 const bcrypt = require('bcryptjs');
 const { createToken } = require('../lib/token.js');
 
