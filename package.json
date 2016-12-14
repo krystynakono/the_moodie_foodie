@@ -40,8 +40,8 @@
     "pg-promise": "^5.3.5",
     "querystring": "^0.2.0",
     "react": "^15.4.1",
-    "react-dom": "^15.4.1",
     "react-cloudinary": "^0.4.1",
+    "react-dom": "^15.4.1",
     "react-dropzone": "^3.7.3",
     "react-modal": "^1.6.1"
   },
@@ -55,6 +55,7 @@
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.16.0",
     "css-loader": "^0.23.1",
+    "dotenv": "^2.0.0",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
