@@ -24,10 +24,10 @@ The user can either:
 
 ## Wireframes
 ### Homepage Vision
-!['hompage vision'](https://wireframe.cc/Dxr2kc)
+!['hompage vision'](http://i.imgur.com/pXYs6Yu.png)
 
 ### Login/Quiz Vision
-!['login vision'](https://wireframe.cc/HuxfFn)
+!['login vision'](http://i.imgur.com/5cPkbjY.png)
 
 ## Technologies Used
 - React
