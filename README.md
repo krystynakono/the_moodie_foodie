@@ -23,11 +23,11 @@ The user can either:
 !['ERD'](http://i.imgur.com/Ycajljv.png)
 
 ## Wireframes
-### Homepage Vision
+#### Homepage Vision
 !['hompage vision'](http://i.imgur.com/pXYs6Yu.png)
 
-### Login/Quiz Vision
-!['login vision'](http://i.imgur.com/5cPkbjY.png)
+#### Login/Quiz Vision
+!['login vision'](http://i.imgur.com/6PdU0vJ.png)
 
 ## Technologies Used
 - React
