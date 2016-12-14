@@ -23,11 +23,6 @@ module.exports = {
     reasons: true,
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
-      },
-    }),
     new HtmlWebpackPlugin({
       title: 'The Moodie Foodie',
       xhtml: true,
