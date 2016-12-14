@@ -87,11 +87,11 @@
   justify-content: space-between;
 }
 
-#findme {
+/*#findme {
   font-weight: bold;
   font-family: 'Metrophobic';
   margin-bottom: 20px;
-}
+}*/
 
 #userinfo {
   display: none;
@@ -150,4 +150,52 @@
 
 #userinfo button:hover {
   padding: 10px 25px;
+}
+
+#happy-font {
+  font-family: 'Oswald';
+  font-size: 40px;
+  margin: 0;
+}
+
+#sad-font {
+  font-family: 'Dancing Script';
+  font-size: 50px;
+  margin: 0;
+}
+
+#angry-font {
+  font-family: 'Permanent Marker';
+  font-size: 45px;
+  margin: 0;
+}
+
+#surprised-font {
+  font-family: 'Fredericka the Great';
+  font-size: 45px;
+  margin: 0;
+}
+
+#contempt-font {
+  font-family: 'Bad Script';
+  font-size: 40px;
+  margin: 0;
+}
+
+#disgust-font {
+  font-family: 'Nothing You Could Do';
+  font-size: 60px;
+  margin: 0;
+}
+
+#afraid-font {
+  font-family: 'Playfair Display SC';
+  font-size: 60px;
+  margin: 0;
+}
+
+#neutral-font {
+  font-family: 'Cutive Mono';
+  font-size: 50px;
+  margin: 0;
 }

@@ -72,11 +72,10 @@ class Webcamera extends Component {
     .catch(err => console.log(err));
   }
 
-
-  render() {
-    return (
-      <div className="selfie-container">
-        <div id="selfie">
+  showWebcam(screenshot) {
+    if (this.state.screenshot === null) {
+      return (
+        <div className="selfie">
           <Webcam
             ref={"webcam"}
             id={"webcam"}
@@ -84,16 +83,42 @@ class Webcamera extends Component {
             screenshotFormat={"image/jpeg"}
             height={'100%'}
             width={'50%'}
-
           />
-          <div className="screenshots">
-            { this.state.screenshot ? <img src={this.state.screenshot} /> : null }
-          </div>
-        </div>
-        <div className='controls'>
           <button onClick={this.takeScreenshot.bind(this)}>Take a selfie!</button>
-          {this.showGoButton(this.state.screenshot)}
         </div>
+      );
+    }
+
+    if (this.state.screenshot) {
+      return (
+        <div className="selfie">
+          <img src={this.state.screenshot} alt="self"/>
+          <button onClick={this.tryAgain.bind(this)}>Take another selfie.</button>
+          <button onClick={this.uploadImage.bind(this)}>That's a keeper. Time to eat.</button>
+
+        </div>
+      );
+    }
+  }
+
+
+  tryAgain() {
+    this.setState({
+      screenshot: null,
+    });
+  }
+
+        // <div className="screenshots">
+        //   { this.state.screenshot ? <img src={this.state.screenshot} /> : null }
+        // </div>
+
+        // <div className="controls">
+        //   {this.showGoButton(this.state.screenshot)}
+        // </div>
+  render() {
+    return (
+      <div className="selfie-container">
+        { this.showWebcam(this.state.screenshot)}
       </div>
     );
   }

@@ -33,6 +33,42 @@ class LogIn extends Component {
     }
   }
 
+  checkEmotion(emotion) {
+    if (emotion === 'HAPPY?') {
+      return (
+        <h2 className="emotion" id="happy-font">happy?</h2>
+      );
+    } else if (emotion === 'SAD?') {
+      return (
+        <h2 className="emotion" id="sad-font">sad?</h2>
+      )
+    } else if (emotion === 'HANGRY?') {
+      return (
+        <h2 className="emotion" id="angry-font">hangry?</h2>
+      )
+    } else if (emotion === 'SURPRISED?') {
+      return (
+        <h2 className="emotion" id="surprised-font">surprised?</h2>
+      )
+    } else if (emotion === 'CONTEMPT?') {
+      return (
+        <h2 className="emotion" id="contempt-font">contempt?</h2>
+      )
+    } else if (emotion === 'DISGUSTED?') {
+      return (
+        <h2 className="emotion" id="disgust-font">disgusted?</h2>
+      )
+    } else if (emotion === 'AFRAID?') {
+      return (
+        <h2 className="emotion" id="afraid-font">afraid?</h2>
+      )
+    } else if (emotion === 'NEUTRAL?') {
+      return (
+        <h2 className="emotion" id="neutral-font">neutral?</h2>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="signin-box">
@@ -62,7 +98,7 @@ class LogIn extends Component {
         <div id="signup" ref="signup">
           <h3 ref="question">What food do you crave when feeling</h3>
           <div className="emotion-container">
-            <h3 id="findme" className="emotion">{this.props.emotion}</h3>
+            {this.checkEmotion(this.props.emotion)}
             <div className="food-category-holder" ref="foodholder">
               <div className="food-image-holder">
                 <img src="http://i.imgur.com/xPGzxs8.jpg" alt="Thai Food" id="thai" onClick={this.showInfo.bind(this)} />
