@@ -3,16 +3,6 @@ import './LogIn.css';
 
 class LogIn extends Component {
 
-  // onClickMethod(e) {
-  //   const modal = this.refs.signup;
-  //   if (modal.style.display === 'block') {
-  //     modal.style.display = 'none';
-  //   } else {
-  //     modal.style.display = 'block';
-  //   }
-  //   // modal.style.display = (disp === 'block' ? 'none' : 'block');
-  // }
-
   onClickMethod() {
     const login = this.refs.login;
     const signup = this.refs.signup;

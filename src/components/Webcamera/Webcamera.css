@@ -1,6 +1,6 @@
 .selfie-container {
   width: 70%;
-  height: 60vh;
+  height: 50vh;
 }
 
 .selfie {
@@ -13,13 +13,13 @@
 }
 
 .selfie video {
-  margin-top: 40px;
-  height: 50%;
+  margin-top: 20px;
+  height: 60%;
 }
 
 .selfie img {
-  height: 50%;
-  margin-top: 40px;
+  height: 60%;
+  margin-top: 20px;
 }
 
 .screenshots {

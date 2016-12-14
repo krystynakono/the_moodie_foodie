@@ -101,20 +101,12 @@ class Webcamera extends Component {
     }
   }
 
-
   tryAgain() {
     this.setState({
       screenshot: null,
     });
   }
 
-        // <div className="screenshots">
-        //   { this.state.screenshot ? <img src={this.state.screenshot} /> : null }
-        // </div>
-
-        // <div className="controls">
-        //   {this.showGoButton(this.state.screenshot)}
-        // </div>
   render() {
     return (
       <div className="selfie-container">

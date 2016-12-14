@@ -39,10 +39,8 @@ class App extends Component {
       emotion: 'HAPPY?',
       counter: 0,
       mood: 'happiness',
-      photo: '',
-      // screenshot: null,
-      tab: 0,
-      formData: '',
+      // photo: '',
+      // formData: '',
       emotions: '',
       restaurants: '',
       eatHere: '',
@@ -51,13 +49,6 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
-    console.log('mounted - will');
-  }
-
-  componentDidMount() {
-    console.log('mounted - did');
-  }
 
   // This function checks to see if the state isLoggedIn is false.
   // If the user is not logged in, the log in form will render.
@@ -210,13 +201,6 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  // takeScreenshot() {
-  //   const screenshot = document.getElementById('selfie').firstChild;
-  //   console.log(screenshot);
-  //   // this.setState(
-  //   //   { screenshot },
-  //   // );
-  // }
 
   // When a file is dropped into the dropzone, this function will save the
   // image file into the state photo.
@@ -226,25 +210,6 @@ class App extends Component {
       photo: files[0],
     });
   }
-
-  // This function creates new formData and appends the photo file as the value
-  // to the photo key. It is then send to the upload route.
-  // uploadImage(file) {
-  //   // console.log(this.state.photo);
-  //   console.log('file: ', file);
-  //   const formData = new FormData();
-  //   formData.append('photo', file);
-  //   fetch('/upload', {
-  //     method: 'POST',
-  //     body: formData,
-  //   })
-  //   .then(r => r.json())
-  //   .then((response) => {
-  //     console.log('image uploaded', response);
-  //     // this.determineEmotion(response);
-  //   })
-  //   .catch(err => console.log(err));
-  // }
 
   determineEmotion(url) {
     console.log('url: ', url);
