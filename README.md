@@ -11,9 +11,9 @@ Upon log in, the user can either input their current mood or take a quick selfie
 
 We will return only one matching restaurant with relvant information to take the stress out of deciding where to eat. 
 The user can either:
-  A. Go enjoy themselves a meal. 
-  B. Save the restaurant for future  reference. 
-  C. Play Restaurant Roulette until satisfied.
+- Go enjoy themselves a meal. 
+- Save the restaurant for future  reference. 
+- Play Restaurant Roulette until satisfied.
 
 !['login page'](http://i.imgur.com/dljibx7.png)
 
