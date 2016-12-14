@@ -29,13 +29,15 @@
 
 .selfie-container button {
   margin: 10px;
-  padding: 4px 17px;
+  padding: 0 17px;
   background-color: #0B3C5D;
   color: white;
   font-size: 20px;
   border: none;
   border-radius: 10px;
   box-shadow: 0 1px 2px #1D2731;
+  font-family: 'News Cycle';
+  letter-spacing: 1px;
 }
 
 .selfie-container button:hover {

@@ -84,7 +84,7 @@ class Webcamera extends Component {
             height={'100%'}
             width={'50%'}
           />
-          <button onClick={this.takeScreenshot.bind(this)}>Take a selfie!</button>
+          <button onClick={this.takeScreenshot.bind(this)}>take a selfie</button>
         </div>
       );
     }

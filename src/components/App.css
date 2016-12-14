@@ -26,7 +26,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: linen;
+  background-color: #FBFBFB;
+/*  background-color: linen;*/
   opacity: 0.95;
   margin: 6% auto 0 auto;
   width: 90%;

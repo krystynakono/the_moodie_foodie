@@ -4,7 +4,13 @@
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  padding: 40px;
+  padding: 40px 40px 0 40px;
+  color: #1D2731;
+}
+
+.restaurant-info-container h1 {
+  margin: 0 0 5px 0;
+  font-family: 'Oswald';
 }
 
 .restaurant-info-container h2 {
@@ -40,37 +46,35 @@
   align-items: center;
 }
 
+.snippit p {
+  margin: 5px;
+}
+
 .address p {
   margin: 2px;
 }
 
+.hidden-restaurant-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .hidden-restaurant-form button {
-  color: white;
-  background-color: #1D2731;
-  padding: 10px 20px;
-  font-size: 15px;
+  font-size: 20px;
   border: none;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 1px 2px gray;
+  margin: 0 20px 0 20px;
+  background: none;
+  color: black;
+  font-family: 'News Cycle';
 }
 
 .hidden-restaurant-form button:hover {
-  color: #1D2731;
-  background-color: #D9B310;
+  color: #328CC1;
+  cursor: pointer;
 }
 
-#tryagain {
-  color: white;
-  background-color: #1D2731;
-  padding: 10px 20px;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 1px 2px gray;
+.hidden-restaurant-form p {
+  font-size: 30px;
 }
 
-#tryagain:hover {
-  color: #1D2731;
-  background-color: #D9B310;
-}

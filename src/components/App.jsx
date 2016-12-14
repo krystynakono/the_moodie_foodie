@@ -105,6 +105,7 @@ class App extends Component {
             saveRestaurant={this.restaurantForm.bind(this)}
             tryAgain={this.tryAgain.bind(this)}
             savebtn={this.state.savebtn}
+            mood={this.state.mood}
           />
         </div>
       );

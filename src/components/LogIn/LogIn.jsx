@@ -13,11 +13,15 @@ class LogIn extends Component {
 
   showInfo(e) {
     this.props.quiz(e);
+    const signupbox = this.refs.signup;
+    const login = this.refs.login;
     const signup = this.refs.userinfo;
     const foodholder = this.refs.foodholder;
     const question = this.refs.question;
     if (this.props.counter === 7) {
-      signup.style.display = 'block';
+      signupbox.style.width = '50%';
+      login.style.padding = '0';
+      signup.style.display = 'flex';
       question.style.display = 'none';
       foodholder.style.display = 'none';
     }
