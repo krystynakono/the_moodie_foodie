@@ -304,19 +304,19 @@ class App extends Component {
     console.log('mood: ' + this.state.mood);
     const setFood = new Promise((res, rej) => {
       let food;
-      if (this.state.mood === 'happiness') {
+      if (this.state.mood === 'happiness' || this.state.mood === 'happy') {
         food = this.state.happy;
-      } else if (this.state.mood === 'sadness') {
+      } else if (this.state.mood === 'sadness' || this.state.mood === 'sad') {
         food = this.state.sad;
-      } else if (this.state.mood === 'anger') {
+      } else if (this.state.mood === 'anger' || this.state.mood === 'angry') {
         food = this.state.angry;
-      } else if (this.state.mood === 'surprised') {
+      } else if (this.state.mood === 'surprise' || this.state.mood === 'surprised') {
         food = this.state.surprised;
       } else if (this.state.mood === 'contempt') {
         food = this.state.contempt;
-      } else if (this.state.mood === 'disgust') {
+      } else if (this.state.mood === 'disgust' || this.state.mood === 'disgusted') {
         food = this.state.disgust;
-      } else if (this.state.mood === 'fear') {
+      } else if (this.state.mood === 'fear' || this.state.mood === 'afraid') {
         food = this.state.fear;
       } else if (this.state.mood === 'neutral') {
         food = this.state.neutral;

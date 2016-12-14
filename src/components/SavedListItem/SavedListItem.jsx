@@ -12,7 +12,7 @@ const SavedListItem = props => (
       <p>{props.address1}</p>
       <p>{props.address2}</p>
       <p>{props.address3}</p>
-      <p>{props.phone}</p>
+      <p id="saved-phone">{props.phone}</p>
     </div>
     <button onClick={() => props.delete(props.id)}>Remove</button>
   </div>

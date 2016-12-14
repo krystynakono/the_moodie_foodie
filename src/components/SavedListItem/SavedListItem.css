@@ -41,11 +41,19 @@
   padding: 5px 17px;
   border: none;
   box-shadow: 0 1px 2px gray;
-  border-radius: 10px;
+  border-radius: 4px;
   letter-spacing: 1px;
 }
 
 .saved-list-item button:hover {
   color: #1D2731;
   background-color: #D9B310;
+}
+
+.address {
+  margin-top: 10px;
+}
+
+#saved-phone {
+  margin-top: 10px;
 }
