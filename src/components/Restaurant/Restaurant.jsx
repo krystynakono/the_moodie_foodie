@@ -11,6 +11,7 @@ class Restaurant extends Component {
           <p>Rated: {this.props.eatHere.rating}</p>
           <img src={this.props.eatHere.rating_img_url} alt="rating"/>
         </div>
+        <h3>Cuisine: {this.props.eatHere.categories[0][0]}</h3>
         <div className="snippit">
           <p>{this.props.eatHere.snippet_text}
             <a href={this.props.eatHere.url} target="_blank">read more</a>

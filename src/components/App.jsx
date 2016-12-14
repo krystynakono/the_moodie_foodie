@@ -225,6 +225,7 @@ class App extends Component {
     })
     .then(r => r.json())
     .then((response) => {
+      console.log(response[0].scores)
       this.setState({
         emotions: response[0].scores,
       });
@@ -405,7 +406,6 @@ class App extends Component {
     }
   }
 
-
   // Save a restaurant to the DB
   saveRestaurant(formData) {
     console.log('save restaurant');
@@ -501,7 +501,6 @@ class App extends Component {
         break;
     }
   }
-
 
   // passes the login data to the api
   // authenticates the data with server

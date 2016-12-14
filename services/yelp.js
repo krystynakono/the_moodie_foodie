@@ -36,7 +36,7 @@ function restaurantSearch(req, res, next) {
 
   // Set the required parameters here
   const requiredParams = {
-    sort: '2',
+    sort: '0',
     radius_filter: 2000,
     oauth_consumer_key: consumerKey,
     oauth_token: oauthToken,

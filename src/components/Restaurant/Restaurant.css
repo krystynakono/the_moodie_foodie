@@ -14,6 +14,12 @@
   margin: 0;
 }
 
+.restaurant-info-container h3 {
+  font-family: 'News Cycle';
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
 .rating {
   display: flex;
   align-items: center;
@@ -39,17 +45,19 @@
 }
 
 .hidden-restaurant-form button {
-  background: none;
+  color: white;
+  background-color: #1D2731;
+  padding: 10px 20px;
+  font-size: 15px;
   border: none;
-  cursor: pointer;
-  font-family: 'News Cycle';
-  font-size: 20px;
-  padding: 2px 6px 0 6px;
+  border-radius: 10px;
   margin-bottom: 20px;
+  box-shadow: 0 1px 2px gray;
 }
 
 .hidden-restaurant-form button:hover {
-  border-bottom: 1px solid black;
+  color: #1D2731;
+  background-color: #D9B310;
 }
 
 #tryagain {
@@ -59,6 +67,7 @@
   font-size: 15px;
   border: none;
   border-radius: 10px;
+  box-shadow: 0 1px 2px gray;
 }
 
 #tryagain:hover {
