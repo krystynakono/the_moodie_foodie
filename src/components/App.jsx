@@ -39,8 +39,6 @@ class App extends Component {
       emotion: 'HAPPY?',
       counter: 0,
       mood: 'happiness',
-      // photo: '',
-      // formData: '',
       emotions: '',
       restaurants: '',
       eatHere: '',
@@ -225,7 +223,7 @@ class App extends Component {
     })
     .then(r => r.json())
     .then((response) => {
-      console.log(response[0].scores)
+      console.log(response[0].scores);
       this.setState({
         emotions: response[0].scores,
       });
@@ -271,7 +269,7 @@ class App extends Component {
       { restaurants },
       );
       this.pickOneRestaurant();
-      console.log(this.state.eatHere)
+      console.log(this.state.eatHere);
     });
   }
 

@@ -1,5 +1,5 @@
 {
-  "name": "Moodie_Foodie",
+  "name": "The_Moodie_Foodie",
   "version": "1.0.0",
   "description": "An app for the hungry and indecisive.",
   "engines": {
@@ -19,7 +19,7 @@
   "repository": {
     "type": "git"
   },
-  "author": "Krystyna Malewski, Janelle Rosario, Nick Taft",
+  "author": "Krystyna Malewski",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.7.13",
