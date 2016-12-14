@@ -1,10 +1,8 @@
-'use strict'
-require('dotenv').config();
-
 const webpack           = require('webpack');
 const path              = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const htmlTemplate      = require('html-webpack-template');
 
 const BUILD_DIR         = path.resolve(__dirname, 'dist');
 const APP_DIR           = path.resolve(__dirname, 'src');
@@ -25,12 +23,17 @@ module.exports = {
     reasons: true,
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      },
+    }),
     new HtmlWebpackPlugin({
       title: 'The Moodie Foodie',
       xhtml: true,
       inject: false,
       scripts: [`https://maps.googleapis.com/maps/api/js?libraries=visualization&key=AIzaSyDLO9BWFDxOz2rzAjvkDwel7aRz025PcgY`],
-      template: require('html-webpack-template'),
+      template: htmlTemplate,
       appMountId: 'root-container',
     }),
     new ExtractTextPlugin('/css/[name].css', {
@@ -66,3 +69,27 @@ module.exports = {
     ],
   },
 };
+
+if (process.env &&
+  process.env.NODE_ENV &&
+  process.env.NODE_ENV === 'production') {
+  const prodPlugins = [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: true,
+      },
+      output: {
+        comments: false,
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin('/js/common.js'),
+  ];
+
+  config.plugins = config.plugins.concat(prodPlugins);
+
+  config.cache = false;
+  config.debug = false;
+  config.devtool = undefined;
+}
+
+module.exports = config;

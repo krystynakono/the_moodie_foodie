@@ -310,7 +310,7 @@ class App extends Component {
         food = this.state.sad;
       } else if (this.state.mood === 'anger') {
         food = this.state.angry;
-      } else if (this.state.mood === 'surprise') {
+      } else if (this.state.mood === 'surprised') {
         food = this.state.surprised;
       } else if (this.state.mood === 'contempt') {
         food = this.state.contempt;
