@@ -1,4 +1,4 @@
-const db = require('../db/db.js');
+const db = require('./db.js');
 
 // Go to the database and get all the restaurants the user has saved
 function getSavedRestaurants(req, res, next) {
