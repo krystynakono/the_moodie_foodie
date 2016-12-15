@@ -2,7 +2,6 @@
 
 const bcrypt = require('bcryptjs');
 const { createToken } = require('../lib/token.js');
-// const { getUserByUsername, getUserById } = require('../models/user');
 const jwt = require('jsonwebtoken');
 const psql = require('./db.js');
 

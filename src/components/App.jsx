@@ -69,11 +69,6 @@ class App extends Component {
       );
     }
   }
-          // <DropzoneBox
-          //   saveImage={this.saveImage.bind(this)}
-          //   photo={this.state.photo}
-          //   uploadImage={this.uploadImage.bind(this)}
-          // />
 
   // Checks to see if the state emotionForm is true.
   // If the user is logged in, the emotion form will render.
@@ -96,6 +91,7 @@ class App extends Component {
     }
   }
 
+  // render this component when the state has been updated with a random restaurant
   restaurantInfo(eatHere) {
     if (eatHere !== '') {
       return (
@@ -112,6 +108,8 @@ class App extends Component {
     }
   }
 
+  // render this component when the eat_map_center component has been set
+  // with the latitude and longitude of the random restaurant
   renderMap(center) {
     if (center !== '') {
       return (
@@ -128,6 +126,8 @@ class App extends Component {
     }
   }
 
+  // Render this component once the seeSaved state is updated with restaurants
+  // from the user's DB
   seeSavedRestaurants(seeSaved) {
     if (seeSaved) {
       return (
@@ -148,194 +148,12 @@ class App extends Component {
     }
   }
 
+  // reset the state of seeSaved to false to close the saved modal and reopens the
+  // emotion form modal
   closeSavedRestaurants() {
     this.setState({
       seeSaved: false,
       emotionForm: true,
-    });
-  }
-
-  success(position) {
-    let latitude = position.coords.latitude;
-    let longitude = position.coords.longitude;
-
-    const promise = new Promise((res, rej) => {
-      this.setState({
-        location: {
-          lat: latitude,
-          lng: longitude,
-        },
-      });
-      if (this.state.location === '') rej(this.state.location);
-      res(this.state.location);
-    });
-    promise.then(result => this.getAddress(result));
-  }
-
-  // Geolocation help from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
-  geoFindMe() {
-    if (!navigator.geolocation) {
-      console.log('geolocation not supported');
-      return;
-    }
-
-    function error() {
-      console.log('unable to retrieved your location');
-    }
-
-    navigator.geolocation.getCurrentPosition(this.success.bind(this), error);
-  }
-
-  getAddress(location) {
-    const lat = location.lat;
-    const lng = location.lng;
-    console.log('get address');
-    fetch(`/maps/${lat}/${lng}`)
-    .then(r => r.json())
-    .then((results) => {
-        this.setState({
-          address: results.formatted_address,
-        });
-    })
-    .catch(err => console.log(err));
-  }
-
-
-  // When a file is dropped into the dropzone, this function will save the
-  // image file into the state photo.
-  saveImage(files) {
-    console.log(files);
-    this.setState({
-      photo: files[0],
-    });
-  }
-
-  determineEmotion(url) {
-    console.log('url: ', url);
-    const form = {
-      url: url,
-    };
-    fetch('/emotion', {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'post',
-      body: JSON.stringify(form),
-    })
-    .then(r => r.json())
-    .then((response) => {
-      console.log(response[0].scores);
-      this.setState({
-        emotions: response[0].scores,
-      });
-      this.dominantMood(this.state.emotions);
-    })
-    .then(() => {
-      this.getFoodForMood();
-    })
-    .catch(err => console.log(err));
-  }
-
-  dominantMood(obj) {
-    let mood = 'anger';
-    let moodValue = obj.anger;
-    for (let key in obj) {
-      if (obj[key] > moodValue) {
-        mood = key;
-        moodValue = obj[key];
-      }
-    }
-    console.log(mood);
-    this.setState(
-      { mood },
-    );
-  }
-
-  // Update the state mood when user uses dropdown menu
-  moodUpdate(e) {
-    this.setState({
-      mood: e.target.value,
-    });
-    console.log(e.target.value);
-  }
-
-  // Make a fetch to the yelp route to search for restaurants matching a
-  // specific cuisine
-  searchRestaurant(cuisine) {
-    console.log('cuisine: ' + cuisine);
-    fetch(`yelp/${cuisine}/${this.state.address}`)
-    .then(r => r.json())
-    .then((restaurants) => {
-      this.setState(
-      { restaurants },
-      );
-      this.pickOneRestaurant();
-      console.log(this.state.eatHere);
-    });
-  }
-
-  pickOneRestaurant() {
-    let index = Math.floor(Math.random() * this.state.restaurants.length);
-    const promise = new Promise((res, rej) => {
-      this.setState({
-        eatHere: this.state.restaurants[index],
-        emotionForm: false,
-      });
-      if (this.state.eatHere === '') rej(this.state.eatHere);
-      res(this.state.eatHere);
-    });
-    promise.then(result => this.centerEatMap(result));
-  }
-
-  centerEatMap(restaurant) {
-    this.setState({
-      eat_map_center: {
-        lat: restaurant.location.coordinate.latitude,
-        lng: restaurant.location.coordinate.longitude,
-      },
-    });
-  }
-
-  // check the state of mood of user and set food equal to the cuisine
-  // that the user likes to eat when they are in that mood.
-  // After setting food equal to that cuisine, call the function that makes
-  // the fetch call to Yelp to get suggested restaurants matching cuisine.
-  getFoodForMood() {
-    console.log('mood: ' + this.state.mood);
-    const setFood = new Promise((res, rej) => {
-      let food;
-      if (this.state.mood === 'happiness' || this.state.mood === 'happy') {
-        food = this.state.happy;
-      } else if (this.state.mood === 'sadness' || this.state.mood === 'sad') {
-        food = this.state.sad;
-      } else if (this.state.mood === 'anger' || this.state.mood === 'angry') {
-        food = this.state.angry;
-      } else if (this.state.mood === 'surprise' || this.state.mood === 'surprised') {
-        food = this.state.surprised;
-      } else if (this.state.mood === 'contempt') {
-        food = this.state.contempt;
-      } else if (this.state.mood === 'disgust' || this.state.mood === 'disgusted') {
-        food = this.state.disgust;
-      } else if (this.state.mood === 'fear' || this.state.mood === 'afraid') {
-        food = this.state.fear;
-      } else if (this.state.mood === 'neutral') {
-        food = this.state.neutral;
-      }
-      // food = this.state[mood];
-      if(!food) rej(food);
-      res(food);
-    });
-    setFood.then(result => this.searchRestaurant(result));
-  }
-
-  tryAgain() {
-    console.log('try again');
-    this.setState({
-      emotionForm: true,
-      eatHere: '',
-      restaurants: '',
-      eat_map_center: '',
-      savebtn: 'Save for another time.',
     });
   }
 
@@ -405,9 +223,228 @@ class App extends Component {
     }
   }
 
+  // Geolocation help from: https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
+  geoFindMe() {
+    if (!navigator.geolocation) {
+      console.log('geolocation not supported');
+      return;
+    }
+
+    function error() {
+      console.log('unable to retrieved your location');
+    }
+
+    navigator.geolocation.getCurrentPosition(this.success.bind(this), error);
+  }
+
+  // fires after the geolocation function successfully returns a latitude and longitude
+  // of users current location
+  success(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+
+    const promise = new Promise((res, rej) => {
+      this.setState({
+        location: {
+          lat: latitude,
+          lng: longitude,
+        },
+      });
+      if (this.state.location === '') rej(this.state.location);
+      res(this.state.location);
+    });
+    promise.then(result => this.getAddress(result));
+  }
+
+  // after setting the state location with the user's current latitude and
+  // longitude, this function firsts and uses google's reverse geocoding API
+  // to get the current address for the yelp fetch
+  getAddress(location) {
+    const lat = location.lat;
+    const lng = location.lng;
+    console.log('get address');
+    fetch(`/maps/${lat}/${lng}`)
+    .then(r => r.json())
+    .then((results) => {
+        this.setState({
+          address: results.formatted_address,
+        });
+    })
+    .catch(err => console.log(err));
+  }
+
+  // Update the state mood when user uses dropdown menu
+  moodUpdate(e) {
+    this.setState({
+      mood: e.target.value,
+    });
+    console.log(e.target.value);
+  }
+
+  // When a file is dropped into the dropzone, this function will save the
+  // image file into the state photo.
+  saveImage(files) {
+    console.log(files);
+    this.setState({
+      photo: files[0],
+    });
+  }
+
+  // take the param of an image url (response object from AWS S3) and set
+  // state pf url to the image url
+  // make a fetch call to microsoft emotion api which returns an object with
+  // emotion scores
+  determineEmotion(url) {
+    console.log('url: ', url);
+    const form = {
+      url: url,
+    };
+    fetch('/emotion', {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'post',
+      body: JSON.stringify(form),
+    })
+    .then(r => r.json())
+    .then((response) => {
+      console.log(response[0].scores);
+      this.setState({
+        emotions: response[0].scores,
+      });
+      // analyze the emotion response object to determine the dominate emotion
+      // of the facial expression in the selfie
+      this.dominantMood(this.state.emotions);
+    })
+    .then(() => {
+      // get the food type the user associates with this type of mood
+      this.getFoodForMood();
+    })
+    .catch(err => console.log(err));
+  }
+
+  // iterates through the emotion response object to find the emotion with
+  // the largest score
+  // set the state of mood to the key belonging to the highest score
+  dominantMood(obj) {
+    let mood = 'anger';
+    let moodValue = obj.anger;
+    for (let key in obj) {
+      if (obj[key] > moodValue) {
+        mood = key;
+        moodValue = obj[key];
+      }
+    }
+    console.log(mood);
+    this.setState(
+      { mood },
+    );
+  }
+
+  // check the state of mood of user and set food equal to the cuisine
+  // that the user likes to eat when they are in that mood.
+  // After setting food equal to that cuisine, call the function that makes
+  // the fetch call to Yelp to get suggested restaurants matching cuisine.
+  getFoodForMood() {
+    console.log('mood: ' + this.state.mood);
+    const setFood = new Promise((res, rej) => {
+      let food;
+      if (this.state.mood === 'happiness' || this.state.mood === 'happy') {
+        food = this.state.happy;
+      } else if (this.state.mood === 'sadness' || this.state.mood === 'sad') {
+        food = this.state.sad;
+      } else if (this.state.mood === 'anger' || this.state.mood === 'angry') {
+        food = this.state.angry;
+      } else if (this.state.mood === 'surprise' || this.state.mood === 'surprised') {
+        food = this.state.surprised;
+      } else if (this.state.mood === 'contempt') {
+        food = this.state.contempt;
+      } else if (this.state.mood === 'disgust' || this.state.mood === 'disgusted') {
+        food = this.state.disgust;
+      } else if (this.state.mood === 'fear' || this.state.mood === 'afraid') {
+        food = this.state.fear;
+      } else if (this.state.mood === 'neutral') {
+        food = this.state.neutral;
+      }
+      // food = this.state[mood];
+      if(!food) rej(food);
+      res(food);
+    });
+    setFood.then(result => this.searchRestaurant(result));
+  }
+
+  // Make a fetch to the yelp route to search for restaurants matching a
+  // specific cuisine, set the state restaurants to the response object
+  // fire pickOneRestaurant
+  searchRestaurant(cuisine) {
+    console.log('cuisine: ' + cuisine);
+    fetch(`yelp/${cuisine}/${this.state.address}`)
+    .then(r => r.json())
+    .then((restaurants) => {
+      this.setState(
+      { restaurants },
+      );
+      this.pickOneRestaurant();
+      console.log(this.state.eatHere);
+    });
+  }
+
+  // find the length of the restaurant array return from search restaurants
+  pickOneRestaurant() {
+    const index = Math.floor(Math.random() * this.state.restaurants.length);
+  // randomly select one restaurant for the user to eat there and set the
+  // state eatHere to that restaurant's object
+  // this state change will cause the component that shows information
+  // about this restaurant to render
+  // hide the emotion form by setting emotionForm state to false
+    const promise = new Promise((res, rej) => {
+      this.setState({
+        eatHere: this.state.restaurants[index],
+        emotionForm: false,
+      });
+      if (this.state.eatHere === '') rej(this.state.eatHere);
+      res(this.state.eatHere);
+    });
+    // send that restaurant object as a param to function centerEatMap
+    promise.then(result => this.centerEatMap(result));
+  }
+
+  // take the parameter of one restaurant object and set the state of eat_map_center
+  // to the latitude and longitude of that restaurant
+  // this will render the google map component with a pin indicating the location
+  // of this restaurant
+  centerEatMap(restaurant) {
+    this.setState({
+      eat_map_center: {
+        lat: restaurant.location.coordinate.latitude,
+        lng: restaurant.location.coordinate.longitude,
+      },
+    });
+  }
+
+  // Collect the information from a specific restaurant
+  // Then send it to the saveRestaurant function.
+  restaurantForm() {
+    const formData = {
+      name: this.state.eatHere.name,
+      rating: this.state.eatHere.rating,
+      rating_img: this.state.eatHere.rating_img_url,
+      url: this.state.eatHere.url,
+      category: this.state.eatHere.categories[0],
+      phone: this.state.eatHere.display_phone,
+      image: this.state.eatHere.image_url,
+      address1: this.state.eatHere.location.display_address[0],
+      address2: this.state.eatHere.location.display_address[1],
+      address3: this.state.eatHere.location.display_address[2],
+      lat: this.state.eatHere.location.coordinate.latitude,
+      lng: this.state.eatHere.location.coordinate.longitude,
+      user_id: this.state.userID,
+    };
+    this.saveRestaurant(formData);
+  }
+
   // Save a restaurant to the DB
   saveRestaurant(formData) {
-    console.log('save restaurant');
     fetch('/restaurant', {
       headers: {
         'Content-Type': 'application/json',
@@ -420,6 +457,22 @@ class App extends Component {
     }))
     .then(() => console.log('restaurant saved'));
   }
+
+  // reset the state of the yelp requests to '' and the emotion form to true
+  // this will render the component with the emotion form and hide the restaurant
+  // results so the user and make another request
+  tryAgain() {
+    console.log('try again');
+    this.setState({
+      emotionForm: true,
+      eatHere: '',
+      restaurants: '',
+      eat_map_center: '',
+      savebtn: 'Save for another time.',
+    });
+  }
+
+
 
   // Delete a saved restaurant from the DB
   deleteRestaurant(id) {
@@ -441,27 +494,6 @@ class App extends Component {
     this.setState({ saved });
   }
 
-  // Collect the information from a specific restaurant
-  // Then send it to the saveRestaurant function.
-  restaurantForm() {
-    console.log('form');
-    const formData = {
-      name: this.state.eatHere.name,
-      rating: this.state.eatHere.rating,
-      rating_img: this.state.eatHere.rating_img_url,
-      url: this.state.eatHere.url,
-      category: this.state.eatHere.categories[0],
-      phone: this.state.eatHere.display_phone,
-      image: this.state.eatHere.image_url,
-      address1: this.state.eatHere.location.display_address[0],
-      address2: this.state.eatHere.location.display_address[1],
-      address3: this.state.eatHere.location.display_address[2],
-      lat: this.state.eatHere.location.coordinate.latitude,
-      lng: this.state.eatHere.location.coordinate.longitude,
-      user_id: this.state.userID,
-    };
-    this.saveRestaurant(formData);
-  }
 
   // Get all saved restaurants from databased and saved into state
   fetchSavedRestaurants() {
@@ -603,7 +635,6 @@ class App extends Component {
   }
 
   showLoginForm() {
-    console.log('showLoginForm');
     const login = document.querySelector('.log-in-container');
     const signupbtn = document.querySelector('#signupModal');
 

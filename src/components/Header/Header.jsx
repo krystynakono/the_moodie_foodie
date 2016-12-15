@@ -3,6 +3,7 @@ import './Header.css';
 
 class Header extends Component {
 
+  // render "saved" and "log out" buttons only when user is logged in to app
   loggedIn(isLoggedIn) {
     if(isLoggedIn) {
       return (

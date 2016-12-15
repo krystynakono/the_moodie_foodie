@@ -3,6 +3,8 @@ import './LogIn.css';
 
 class LogIn extends Component {
 
+  // initially, login box will render
+  // onclick, this will show the signup box and hide the login box
   onClickMethod() {
     const login = this.refs.login;
     const signup = this.refs.signup;
@@ -11,6 +13,8 @@ class LogIn extends Component {
     signup.style.display = 'flex';
   }
 
+  // once user has input all preferences for mood/food combinations (when counter is 7)
+  // hide the question and food images and display the username/password input form
   showInfo(e) {
     this.props.quiz(e);
     const signupbox = this.refs.signup;
@@ -27,6 +31,8 @@ class LogIn extends Component {
     }
   }
 
+  // check the current state of emotion and render the appropriate h2 tag
+  // each tag has a unique id to target unique font-families
   checkEmotion(emotion) {
     if (emotion === 'HAPPY?') {
       return (
@@ -35,31 +41,31 @@ class LogIn extends Component {
     } else if (emotion === 'SAD?') {
       return (
         <h2 className="emotion" id="sad-font">sad?</h2>
-      )
+      );
     } else if (emotion === 'HANGRY?') {
       return (
         <h2 className="emotion" id="angry-font">hangry?</h2>
-      )
+      );
     } else if (emotion === 'SURPRISED?') {
       return (
         <h2 className="emotion" id="surprised-font">surprised?</h2>
-      )
+      );
     } else if (emotion === 'CONTEMPT?') {
       return (
         <h2 className="emotion" id="contempt-font">contempt?</h2>
-      )
+      );
     } else if (emotion === 'DISGUSTED?') {
       return (
         <h2 className="emotion" id="disgust-font">disgusted?</h2>
-      )
+      );
     } else if (emotion === 'AFRAID?') {
       return (
         <h2 className="emotion" id="afraid-font">afraid?</h2>
-      )
+      );
     } else if (emotion === 'NEUTRAL?') {
       return (
         <h2 className="emotion" id="neutral-font">neutral?</h2>
-      )
+      );
     }
   }
 

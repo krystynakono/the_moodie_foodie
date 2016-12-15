@@ -7,6 +7,7 @@ class SavedMap extends Component {
   render() {
     const savedMapContainer = <div id="see-saved-pins" style={{ height: '90%', width: '90%' }} />
 
+    // center of map will be users current location.
     const center = {
       lat: parseFloat(this.props.location.lat),
       lng: parseFloat(this.props.location.lng)
@@ -14,6 +15,7 @@ class SavedMap extends Component {
 
     const labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+    // iterate through all the saved restaurants and provide the marker with the latitude and longitude of each as well as a label to match each marker with the corresponding restaurant information.
     const markers =  this.props.saved.map((restaurant, i) => {
 
       const marker = {

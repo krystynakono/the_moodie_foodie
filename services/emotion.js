@@ -1,8 +1,6 @@
 const fetch = require('node-fetch');
 
 function readEmotion(req, res, next) {
-  // console.log(image);
-  // console.log(req.params)
   fetch('https://api.projectoxford.ai/emotion/v1.0/recognize', {
     headers: {
       'Content-Type': 'application/json',

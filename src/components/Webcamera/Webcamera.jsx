@@ -12,6 +12,8 @@ class Webcamera extends Component {
     };
   }
 
+  // Once an image has been uploaded, the 'Go!' button will render.
+  // On click this button fires the upload image function.
   showGoButton(screenshot) {
     if (screenshot) {
       return (
@@ -20,6 +22,8 @@ class Webcamera extends Component {
     }
   }
 
+  // this function fires on a button click and sets the state to the image file
+  // getScreenshot is a built in function of the react-webcam component
   takeScreenshot() {
     const screenshot = this.refs.webcam.getScreenshot();
     console.log('Take selfie');
@@ -52,6 +56,7 @@ class Webcamera extends Component {
     return new Blob([ia], { type: mimeString });
   }
 
+  // Send image to AWS S3 to get a url back
   uploadImage() {
     // convert the selfie string into a blob using dataURLtoBlob function
     const blob = this.dataURItoBlob(this.state.screenshot);
@@ -72,6 +77,7 @@ class Webcamera extends Component {
     .catch(err => console.log(err));
   }
 
+  // Webcam will render if no image is saved in state
   showWebcam(screenshot) {
     if (this.state.screenshot === null) {
       return (
@@ -89,6 +95,9 @@ class Webcamera extends Component {
       );
     }
 
+    // if a screenshot is saved in state, the screnshot will display on the page
+    // if the user chooses to retake the image, it will reset the state of screenshot
+    // to null and the webcam will display instead of the photo.
     if (this.state.screenshot) {
       return (
         <div className="selfie">
@@ -101,6 +110,8 @@ class Webcamera extends Component {
     }
   }
 
+  // reset the state of screenshot to null in order to remove the image that was rendered
+  // and rerender the webcam
   tryAgain() {
     this.setState({
       screenshot: null,
