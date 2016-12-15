@@ -624,15 +624,18 @@ class App extends Component {
         alert(response.message);
       }
     })
-    .then(this.setState({
-      signupName: '',
-      signupPass: '',
-    }))
-    .then(this.showLoginForm())
-    .then(console.log('signup successful'))
-    .then(this.hideSignUp())
+    .then(() => {
+      this.setState({
+        loginName: this.state.signupName,
+        loginPass: this.state.signupPass,
+      });
+      this.handleLogin();
+    })
     .catch(err => console.log(err));
   }
+    // .then(this.showLoginForm())
+    // .then(console.log('signup successful'))
+    // .then(this.hideSignUp())
 
   showLoginForm() {
     const login = document.querySelector('.log-in-container');
