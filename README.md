@@ -53,3 +53,4 @@ The user can either:
 - Help with Yelp's OAuth attributed to code from [this website](https://arian.io/how-to-use-yelps-api-with-node/) and [Travel Buddy](https://github.com/krmalewski/project2)
 - Code for user login and authorization attributed to the work that Nick Taff did on our [Digital Gypsy](https://github.com/Digital-Gypsy/digital-gypsy-app) App
 
+### Visit live site [here](https://the-moodie-foodie.herokuapp.com/)!
