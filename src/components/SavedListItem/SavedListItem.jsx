@@ -3,7 +3,7 @@ import './SavedListItem.css';
 
 const SavedListItem = props => (
   <div className="saved-list-item">
-    <h3>{props.label}. {props.name}</h3>
+    <h3><span>{props.label}</span> {props.name}</h3>
     <div className="saved-rating">
       <p>Rated: {props.rating}</p>
       <img src={props.rating_img} alt="rating" />

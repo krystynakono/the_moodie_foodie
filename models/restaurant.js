@@ -6,6 +6,7 @@ function getSavedRestaurants(req, res, next) {
           WHERE user_id = $1;`,
           req.params.user_id)
   .then((saved) => {
+    console.log(saved)
     res.saved = saved;
     next();
   })

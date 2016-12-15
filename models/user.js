@@ -7,7 +7,6 @@ const { createToken } = require('../lib/token.js');
 // creates a new user object using form input
 function createUser(req, res, next) {
   const SALTROUNDS = 10;
-  console.log(req.body);
   const userObject = {
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, SALTROUNDS),
@@ -33,7 +32,6 @@ function createUser(req, res, next) {
               AND password = $2;`,
               [userObject.username, userObject.password])
     .then((result) => {
-      console.log(result);
       res.token = createToken(result);
       res.id = result.id;
       res.happy = result.happy;

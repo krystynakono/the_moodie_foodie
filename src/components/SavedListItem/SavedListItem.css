@@ -14,6 +14,12 @@
   margin: 10px 0 0 0;
 }
 
+.saved-list-item h3 span {
+  color: #D9B310;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
 .saved-rating  {
   display: flex;
   align-items: center;
@@ -25,6 +31,7 @@
 
 .saved-rating img {
   height: 17px;
+  margin-left: 10px;
 }
 
 .address-image {

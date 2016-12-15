@@ -3,21 +3,13 @@
 const router = require('express').Router();
 const { logIn, verifyUser } = require('../models/auth');
 const { createUser } = require('../models/user');
-// const { createToken } = require('../lib/token');
 
 // authenticates the login and if ture, send a json token
 router.post('/login', logIn, (req, res) => {
   res.json({
     token: res.token,
-    id: res.user.id || 'invalid',
+    id: res.id || 'invalid',
     user: res.user,
-    // sad: res.sad || '',
-    // angry: res.angry || '',
-    // surprised: res.surprised || '',
-    // contempt: res.contempt || '',
-    // disgust: res.disgust || '',
-    // fear: res.fear || '',
-    // neutral: res.neutral || '',
   });
 });
 
