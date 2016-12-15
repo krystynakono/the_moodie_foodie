@@ -47,7 +47,7 @@ The user can either:
 - [React Webcam](https://github.com/cezary/react-webcam)
 - [Multer Documentation](https://www.npmjs.com/package/multer-s3)
 - Example using [Multer-to-S3](https://gist.github.com/adon-at-work/26c8a8e0a1aee5ded03c)
-- - Also, big thank you to Sabrina Mesa and Joey Pinas for all the help with photo uploading and AWS. 
+    - Also, big thank you to Sabrina Mesa and Joey Pinas for all the help with photo uploading and AWS. 
 - Help [converting data from webcam image to a file](http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata) to be sent through formData
 - Geolocation help from these [docs](ttps://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation)
 - Help with Yelp's OAuth attributed to code from [this website](https://arian.io/how-to-use-yelps-api-with-node/) and [Travel Buddy](https://github.com/krmalewski/project2)
