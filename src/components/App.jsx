@@ -523,7 +523,7 @@ class App extends Component {
         this.setState({ loginPass: value });
         break;
       case 'signupName':
-        this.setState({ signupName: e.target.value });
+        this.setState({ signupName: value });
         break;
       case 'signupPass':
         this.setState({ signupPass: value });
@@ -561,25 +561,20 @@ class App extends Component {
           disgust: response.user.disgust,
           fear: response.user.fear,
           neutral: response.user.neutral,
+          loginName: '',
+          loginPass: '',
+          isLoggedIn: true,
+          emotionForm: true,
         });
         // saves jwt token and ID
         localStorage.id = response.id;
         localStorage.token = response.token;
       } else {
         alert('invalid login');
+        return;
       }
     })
-    .then(this.setState({
-      loginName: '',
-      loginPass: '',
-    }))
     .then(console.log('logging in user: ', localStorage.id))
-    .then(() => {
-      this.setState({
-        isLoggedIn: true,
-        emotionForm: true,
-      });
-    })
     .then(this.geoFindMe.bind(this))
     .catch(err => console.log(err));
   }
@@ -614,7 +609,6 @@ class App extends Component {
     })
     .then(r => r.json())
     .then((response) => {
-      console.log(response);
       if (response.id) {
         this.setState({
           userID: response.id,
@@ -633,9 +627,6 @@ class App extends Component {
     })
     .catch(err => console.log(err));
   }
-    // .then(this.showLoginForm())
-    // .then(console.log('signup successful'))
-    // .then(this.hideSignUp())
 
   showLoginForm() {
     const login = document.querySelector('.log-in-container');

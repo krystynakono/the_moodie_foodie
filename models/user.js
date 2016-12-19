@@ -19,7 +19,7 @@ function createUser(req, res, next) {
     fear: req.body.fear,
     neutral: req.body.neutral,
   };
-  console.log(userObject);
+  console.log('createUser:', userObject);
 
   psql.none(`INSERT INTO users
             (username, password, happy, sad, angry, surprised, contempt, disgust, fear, neutral)
@@ -34,12 +34,11 @@ function createUser(req, res, next) {
     .then((result) => {
       res.token = createToken(result);
       res.id = result.id;
-      res.happy = result.happy;
       next();
     })
     .catch(error => next(error));
   })
-  .catch(error => console.log('Signup failed. Please try again'));
+  .catch(error => console.log(error));
   // then gets the newly created id from the db
 }
 

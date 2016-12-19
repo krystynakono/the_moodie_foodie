@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const psql = require('./db.js');
 
 function logIn(req, res, next) {
-  console.log('login model', req.body)
+  console.log('login model', req.body);
   const loginData = {
     username: req.body.username,
     password: req.body.password,
@@ -30,7 +30,7 @@ function logIn(req, res, next) {
         res.user = user;
         next();
       }
-    })
+    });
     res.token = 'invalid';
     next();
   })
