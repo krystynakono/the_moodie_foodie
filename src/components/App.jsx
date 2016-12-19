@@ -469,10 +469,9 @@ class App extends Component {
       restaurants: '',
       eat_map_center: '',
       savebtn: 'Save for another time.',
+      mood: 'happiness',
     });
   }
-
-
 
   // Delete a saved restaurant from the DB
   deleteRestaurant(id) {
@@ -570,7 +569,7 @@ class App extends Component {
         localStorage.id = response.id;
         localStorage.token = response.token;
       } else {
-        alert('invalid login');
+        alert('Invalid login. Please enter your username and password or create an account by clicking the link below the log in button.');
         return;
       }
     })
